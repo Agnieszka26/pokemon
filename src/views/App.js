@@ -1,15 +1,17 @@
 import "./App.css";
-//import InputForm, {pokemons} from "../components/Input/Input";
-//import react, {useState} from "react";
-//import DisplayList from "../components/DisplayListOfPokemon/DisplayList";
 import Home from "../components/Home/Home";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import PokemonDetail from "../components/PokemonDetail/PokemonDetail";
 
 function App() {
   return (
     <>
-      <Home />
-      {/* <InputForm mate="Jakis objekt" />
-      <DisplayList data="llllooooollll" /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pokemondetails{id}" element={<PokemonDetail />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
