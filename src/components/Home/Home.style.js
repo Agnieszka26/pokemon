@@ -45,8 +45,24 @@ const InputNumber = styled.input`
   cursor: pointer;
   margin: 0.2rem;
   color: rgb(140, 156, 180);
-  outline: 1px solid #5193f6;
+  outline: none;
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
+  &:active,
+  &:focus {
+    outline: 2px solid #5193f6;
+
+    ::-webkit-input-placeholder {
+      color: #24324700;
+    }
+  }
   &:hover {
     cursor: pointer;
     color: #5193f6;

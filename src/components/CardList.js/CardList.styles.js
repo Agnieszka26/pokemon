@@ -8,6 +8,5 @@ export const CardListBody = styled.div`
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
-  line-height: 2rem;
   text-align: center;
 `;

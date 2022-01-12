@@ -1,7 +1,12 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import Detail from "../Detail/Detail";
-import {TypeTitle, NameTitle, ImagePokemon, CardPokemon} from "./Card.styles";
+import {
+  TypeTitle,
+  NameTitle,
+  ImagePokemon,
+  CardPokemon,
+  Tables,
+} from "./Card.styles";
 
 const Card = (props) => {
   // console.log("ile razy");
@@ -14,8 +19,10 @@ const Card = (props) => {
       <ImagePokemon>
         <img src={props.image} alt="img" />
       </ImagePokemon>
-      <NameTitle> name: {props.name}</NameTitle>
-      <TypeTitle> type: {props.baseType} </TypeTitle>
+      <NameTitle>{props.name}</NameTitle>
+      <Tables>name</Tables>
+      <TypeTitle> {props.baseType} </TypeTitle>
+      <Tables>type</Tables>
     </CardPokemon>
   );
 };

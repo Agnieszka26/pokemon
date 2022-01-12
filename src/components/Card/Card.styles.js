@@ -30,25 +30,28 @@ const ImagePokemon = styled.div`
 `;
 
 const NameTitle = styled.h1`
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  magrin-bottom: 0;
 `;
 
 const TypeTitle = styled.h3`
   color: hsla(0, 0%, 83%, 1);
   font-size: 0.9rem;
-  margin-bottom: 5px;
+  magrin-bottom: 0;
 `;
 
 const PokemonButton = styled.button`
   background: hsla(0, 0%, 2%, 1);
-  padding: 0.7rem 2.5rem;
   font-size: 15px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  margin-top: 0.2rem;
 `;
 
-export {TypeTitle, PokemonButton, NameTitle, ImagePokemon, CardPokemon};
+const Tables = styled.p`
+  color: black;
+  font-size: 0.6rem;
+  margin: 0;
+`;
+
+export {TypeTitle, PokemonButton, NameTitle, ImagePokemon, CardPokemon, Tables};

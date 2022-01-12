@@ -5,7 +5,7 @@ import {HomeStyle, Input, InputNumber} from "./Home.style";
 import Loading from "../Loading/Loading";
 
 const Home = () => {
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState();
   const [pokemons, setPokemons] = useState([]);
   const [thereArePokemons, setThereArePokemons] = useState(false);
   const [load, setLoad] = useState(false);
@@ -36,7 +36,7 @@ const Home = () => {
                 id="x"
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
-                placeholder="set numbers of robots"
+                placeholder="set numbers of pokemons"
               />
             </label>
             <Input

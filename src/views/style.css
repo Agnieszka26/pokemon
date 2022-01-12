@@ -1,0 +1,23 @@
+ /* colors and some variables which I use  */
+
+
+:root{
+  --background: #24324700;
+
+  --background: hsla(216, 32%, 21%, 1);
+  --card-background-color: linear-gradient(
+    180.2deg,
+    #bbc3cf -8.53%,
+    #5193f6 -8.53%,
+    #f947e891 109.43%
+  );
+  --btn-color: hsla(0, 0%, 2%, 1);
+  --text-primary: hsla(0, 0%, 100%, 1);
+  --text-secondary: hsla(0, 0%, 83%, 1);
+  --border-color: white;
+  --card-shadow:4px 7px 19px rgba(168, 44, 210, 0.56);
+
+
+ }
+
+
