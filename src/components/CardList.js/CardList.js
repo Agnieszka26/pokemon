@@ -5,7 +5,6 @@ import {CardListBody} from "./CardList.styles";
 const CardList = (props) => {
   const [pokemonUrl, setPokemonUrl] = useState([]);
   const [pokemons, setPokemons] = useState([]);
-  const [pokemonDetails, setPokemonDetails] = useState(null);
   const {pokemonData} = props;
   //czy trzeba asynkronicznie ?
   const createPokemonUrl = () => {
@@ -29,7 +28,7 @@ const CardList = (props) => {
   useEffect(() => {
     getingDataOnePokemon();
   }, [pokemonUrl]);
-
+  
   return (
     <>
       <CardListBody>

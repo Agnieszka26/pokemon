@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "../components/Home/Home";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import PokemonDetail from "../components/PokemonDetail/PokemonDetail";
+import Detail from "../components/Detail/Detail";
 
 function App() {
   return (
@@ -9,7 +9,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pokemondetails{id}" element={<PokemonDetail />} />
+          {/* <Route path="/Detail/:userId" children={({ match }) => (<Client {...match.params} />)} /> */}
+          <Route path="/Detail/:userId" element={<Detail />} />
         </Routes>
       </BrowserRouter>
     </>
@@ -17,3 +18,4 @@ function App() {
 }
 
 export default App;
+/// redirect card element={<PokemonDetail />
