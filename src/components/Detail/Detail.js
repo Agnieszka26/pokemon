@@ -1,14 +1,17 @@
 import React from "react";
 import {useParams} from "react-router-dom";
+import {CardDetail} from "./Detail.style";
 
 const Detail = () => {
-  const {userId} = useParams();
-  console.log({userId});
+  const {userId, name} = useParams();
+
   return (
     <>
-      name
-      {/* <div> name: {props.name}</div> */}
-      <div> id: {userId} </div>
+      <CardDetail>
+        {/* <img src={image} /> */}
+        <div> name: {name}</div>
+        <div> id: {userId} </div>
+      </CardDetail>
     </>
   );
 };

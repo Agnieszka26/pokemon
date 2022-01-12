@@ -28,14 +28,14 @@ const CardList = (props) => {
   useEffect(() => {
     getingDataOnePokemon();
   }, [pokemonUrl]);
-  
+
   return (
     <>
       <CardListBody>
         {pokemons.map((detail, i) => (
           <Card
             id={detail.id}
-            // pokemonDetails={pokemons}
+            pokemonDetails={pokemons}
             image={detail.sprites.front_shiny}
             key={detail.id}
             name={detail.name}

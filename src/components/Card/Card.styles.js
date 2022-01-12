@@ -16,6 +16,7 @@ const CardPokemon = styled.div`
   transition: scale 0.3s, transform .3s;
 
   &:hover{
+    cursor: pointer;
     transform: scale(1.1);
 `;
 

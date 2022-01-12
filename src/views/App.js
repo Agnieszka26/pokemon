@@ -9,8 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/Detail/:userId" children={({ match }) => (<Client {...match.params} />)} /> */}
-          <Route path="/Detail/:userId" element={<Detail />} />
+          <Route exact path="/Detail/:userId/:name" element={<Detail />} />
         </Routes>
       </BrowserRouter>
     </>
@@ -18,4 +17,3 @@ function App() {
 }
 
 export default App;
-/// redirect card element={<PokemonDetail />

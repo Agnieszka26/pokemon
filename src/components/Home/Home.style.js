@@ -29,6 +29,11 @@ const Input = styled.input`
   border: none;
   cursor: pointer;
   color: rgb(216, 225, 238);
+  transition: background 0.8s;
+
+
+  &:hover {
+    background: #5193f6;
 `;
 
 const InputNumber = styled.input`
@@ -40,5 +45,11 @@ const InputNumber = styled.input`
   cursor: pointer;
   margin: 0.2rem;
   color: rgb(140, 156, 180);
+  outline: 1px solid #5193f6;
+
+  &:hover {
+    cursor: pointer;
+    color: #5193f6;
+  }
 `;
 export {HomeStyle, Input, InputNumber};
