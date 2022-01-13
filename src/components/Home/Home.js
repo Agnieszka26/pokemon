@@ -4,6 +4,8 @@ import {HomeStyle, Input, InputNumber} from "./Home.style";
 import Loading from "../Loading/Loading";
 
 const Home = () => {
+  const [validationWarning, setValidateWarning] = useState("");
+  const [validationStyle, setValidationStyle] = useState({outline: `none`});
   const [number, setNumber] = useState(0);
   const [pokemons, setPokemons] = useState([]);
   const [thereArePokemons, setThereArePokemons] = useState(false);
@@ -18,9 +20,23 @@ const Home = () => {
     setLoad(false);
   }
 
+  const validationStyles = {
+    validationText: {
+      color: "red",
+      fontSize: "10px",
+      margin: 0,
+      padding: 0,
+    },
+  };
+
   const handleSubmit = () => {
-    getAllPokemons();
-    setThereArePokemons(true);
+    if (number < 0) {
+      setValidateWarning("the number must be higher than 0");
+      setValidationStyle({outline: `5px solid red`});
+    } else {
+      getAllPokemons();
+      setThereArePokemons(true);
+    }
   };
 
   return (
@@ -31,12 +47,16 @@ const Home = () => {
             <label>
               How many pokemons do you want to see?
               <InputNumber
+                style={validationStyle}
                 type="number"
                 placeholder="set numbers of pokemons"
-                value={null}
+                value={undefined}
                 onChange={(e) => setNumber(e.target.value)}
               />
             </label>
+            <div style={validationStyles.validationText}>
+              {validationWarning}
+            </div>
             <Input
               type="button"
               onClick={handleSubmit}

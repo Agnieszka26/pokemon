@@ -23,6 +23,7 @@ const HomeStyle = styled.div`
 
 const Input = styled.input`
   padding: 1rem;
+  margin:0.9rem;
   background: rgb(140, 156, 180);
   font-size: 15px;
   border-radius: 8px;
@@ -38,13 +39,15 @@ const Input = styled.input`
 const InputNumber = styled.input`
   padding: 1rem;
   margin: 0.2rem;
+  margin-bottom: 0;
+
   background: rgb(216, 225, 238);
-  font-size: 15px;
+  font-size: 0.7rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   color: rgb(140, 156, 180);
-  outline: none;
+
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
