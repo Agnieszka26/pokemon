@@ -33,7 +33,7 @@ const Home = () => {
               <InputNumber
                 type="number"
                 placeholder="set numbers of pokemons"
-                value={null}
+                value={undefined}
                 onChange={(e) => setNumber(e.target.value)}
               />
             </label>
