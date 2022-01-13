@@ -6,6 +6,7 @@ import Loading from "../Loading/Loading";
 const Home = () => {
   const [validationWarning, setValidateWarning] = useState("");
   const [validationStyle, setValidationStyle] = useState({outline: `none`});
+  // const [initial, setInitial] = useState({})
   const [number, setNumber] = useState(0);
   const [pokemons, setPokemons] = useState([]);
   const [thereArePokemons, setThereArePokemons] = useState(false);
@@ -32,7 +33,16 @@ const Home = () => {
   const handleSubmit = () => {
     if (number < 0) {
       setValidateWarning("the number must be higher than 0");
-      setValidationStyle({outline: `5px solid red`});
+      setValidationStyle({
+        outline: `2px solid red`,
+        backgroundColor: "#ff206391",
+      });
+    } else if (number > 1118) {
+      setValidateWarning("the number must be lower than 1118");
+      setValidationStyle({
+        outline: `2px solid red`,
+        backgroundColor: "#ff206391",
+      });
     } else {
       getAllPokemons();
       setThereArePokemons(true);
@@ -51,7 +61,11 @@ const Home = () => {
                 type="number"
                 placeholder="set numbers of pokemons"
                 value={undefined}
-                onChange={(e) => setNumber(e.target.value)}
+                onChange={(e) => (
+                  setNumber(e.target.value),
+                  setValidateWarning(""),
+                  setValidationStyle({outline: `none`})
+                )}
               />
             </label>
             <div style={validationStyles.validationText}>
