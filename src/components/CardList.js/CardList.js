@@ -2,20 +2,23 @@ import React, {useState, useEffect} from "react";
 import Card from "../Card/Card";
 import {CardListBody} from "./CardList.styles";
 
-const CardList = (props) => {
+const CardList = ({pokemonData}) => {
   const [pokemonUrl, setPokemonUrl] = useState([]);
   const [pokemons, setPokemons] = useState([]);
-  const {pokemonData} = props;
-  //czy trzeba asynkronicznie ?
+
+  useEffect(() => {
+    createPokemonUrl();
+  }, [pokemonData]);
+
+  useEffect(() => {
+    getingDataOnePokemon();
+  }, [pokemonUrl]);
+
   const createPokemonUrl = () => {
     pokemonData.forEach((element) => {
       setPokemonUrl((arrOfUrl) => [...arrOfUrl, element.url]);
     });
   };
-
-  useEffect(() => {
-    createPokemonUrl();
-  }, [pokemonData]);
 
   const getingDataOnePokemon = () => {
     pokemonUrl.forEach(async (url) => {
@@ -25,14 +28,10 @@ const CardList = (props) => {
     });
   };
 
-  useEffect(() => {
-    getingDataOnePokemon();
-  }, [pokemonUrl]);
-
   return (
     <>
       <CardListBody>
-        {pokemons.map((detail, i) => (
+        {pokemons.map((detail) => (
           <Card
             id={detail.id}
             pokemonDetails={pokemons}

@@ -6,10 +6,13 @@ import Loading from "../Loading/Loading";
 const Home = () => {
   const [number, setNumber] = useState(0);
   const [pokemons, setPokemons] = useState([]);
+  //czy tojest potrzebne ? nie - można sprawdzic przez arr.length
   const [thereArePokemons, setThereArePokemons] = useState(false);
   const [load, setLoad] = useState(false);
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
 
+
+  //try catch
   async function getAllPokemons() {
     setLoad(true);
     const response = await fetch(url);
@@ -34,7 +37,8 @@ const Home = () => {
                 type="number"
                 placeholder="set numbers of pokemons"
                 value={undefined}
-                onChange={(e) => setNumber(e.target.value)}
+                onChange={(e) => setNumber(e.target.value)} 
+                // wyrzucić tę funkcję  
               />
             </label>
             <Input
@@ -46,6 +50,7 @@ const Home = () => {
         </HomeStyle>
       )}
       {thereArePokemons && <CardList pokemonData={pokemons} />}
+      {/* nazwenictwo <loader />  */}
       {load && <Loading />}
     </>
   );

@@ -9,13 +9,15 @@ import {
 } from "./Card.styles";
 
 const Card = (props) => {
-  // console.log("ile razy");
-  let navigate = useNavigate();
-  function handleClick() {
+  console.log("ile razy");
+  const navigate = useNavigate();
+
+  const handleClick = () => {
     navigate(`Detail/${props.id}/${props.name}`);
-  }
+  };
+
   return (
-    <CardPokemon onClick={() => handleClick()}>
+    <CardPokemon onClick={handleClick}>
       <ImagePokemon>
         <img src={props.image} alt="img" />
       </ImagePokemon>
