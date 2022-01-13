@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
 const HomeStyle = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
   padding: 1rem;
+  margin: 0.5rem;
   background: linear-gradient(
     180.2deg,
     #5193f6 -8.53%,
@@ -10,20 +16,14 @@ const HomeStyle = styled.div`
   border: 2px solid white;
   border-radius: 20px;
   box-shadow: 4px 7px 19px rgba(168, 44, 210, 0.56);
-  margin: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
   line-height: 2rem;
   text-align: center;
   width: 50vw;
 `;
 
 const Input = styled.input`
-  background: rgb(140, 156, 180);
   padding: 1rem;
+  background: rgb(140, 156, 180);
   font-size: 15px;
   border-radius: 8px;
   border: none;
@@ -31,19 +31,18 @@ const Input = styled.input`
   color: rgb(216, 225, 238);
   transition: background 0.8s;
 
-
   &:hover {
     background: #5193f6;
 `;
 
 const InputNumber = styled.input`
-  background: rgb(216, 225, 238);
   padding: 1rem;
+  margin: 0.2rem;
+  background: rgb(216, 225, 238);
   font-size: 15px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  margin: 0.2rem;
   color: rgb(140, 156, 180);
   outline: none;
   ::-webkit-inner-spin-button {

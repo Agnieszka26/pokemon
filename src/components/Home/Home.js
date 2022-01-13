@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import CardList from "../CardList.js/CardList";
 import {HomeStyle, Input, InputNumber} from "./Home.style";
-
 import Loading from "../Loading/Loading";
 
 const Home = () => {
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState(0);
   const [pokemons, setPokemons] = useState([]);
   const [thereArePokemons, setThereArePokemons] = useState(false);
   const [load, setLoad] = useState(false);
@@ -33,10 +32,9 @@ const Home = () => {
               How many pokemons do you want to see?
               <InputNumber
                 type="number"
-                id="x"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
                 placeholder="set numbers of pokemons"
+                value={null}
+                onChange={(e) => setNumber(e.target.value)}
               />
             </label>
             <Input
