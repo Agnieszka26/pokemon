@@ -1,5 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react/cjs/react.development";
 import {
   TypeTitle,
   NameTitle,
@@ -10,10 +11,14 @@ import {
 
 const Card = (props) => {
   // console.log("ile razy");
+  const [pokemonDetaliURL, setPokemonDetaliURL] = useState(null);
   let navigate = useNavigate();
   function handleClick() {
     navigate(`Detail/${props.id}/${props.name}`);
+    setPokemonDetaliURL(`${props.url}`);
+    console.log(pokemonDetaliURL);
   }
+
   return (
     <CardPokemon onClick={() => handleClick()}>
       <ImagePokemon>

@@ -34,6 +34,7 @@ const CardList = (props) => {
       <CardListBody>
         {pokemons.map((detail, i) => (
           <Card
+            url = {pokemonUrl}
             id={detail.id}
             pokemonDetails={pokemons}
             image={detail.sprites.front_shiny}
