@@ -38,12 +38,14 @@ const DropdownMenu = (props) => {
         <img src={arrow} width="10" height="10" />
       </button>
       {condition &&
-        Object.values(abilities).map((item) => {
-          //console.log(item.ability.name);
+        Object.values(abilities).map((item, id) => {
+          console.log(id);
           return (
             <MenuUl>
               <MenuLi>
-                <MenuA href="#">{item.ability.name}</MenuA>
+                <MenuA key={id} href="#">
+                  {item.ability.name}
+                </MenuA>
               </MenuLi>
             </MenuUl>
           );
