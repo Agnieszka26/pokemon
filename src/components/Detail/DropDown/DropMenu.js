@@ -38,15 +38,15 @@ const DropdownMenu = (props) => {
         <img src={arrow} width="10" height="10" />
       </button>
       {condition &&
-        abilities.map((item) => {
-          console.log(item);
-          // return (
-          //   <MenuUl>
-          //     <MenuLi>
-          //       <MenuA href="#">{{item}}</MenuA>
-          //     </MenuLi>
-          //   </MenuUl>
-          // );
+        Object.values(abilities).map((item) => {
+          //console.log(item.ability.name);
+          return (
+            <MenuUl>
+              <MenuLi>
+                <MenuA href="#">{item.ability.name}</MenuA>
+              </MenuLi>
+            </MenuUl>
+          );
         })}
       {/* {condition  ? (
         <MenuUl>
