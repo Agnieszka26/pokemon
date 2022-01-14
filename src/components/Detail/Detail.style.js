@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const CardDetail = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: tomato;
   width: 80%;
   padding: 2rem;
   background: linear-gradient(
@@ -14,5 +18,15 @@ const CardDetail = styled.div`
   margin: 0.5rem;
   color: #bbc3cf;
 `;
+const CardSmall = styled.div`
+  flex: 0 0 100px;
+  padding: 1rem;
+  background: hsla(0, 0%, 83%, 1);
+  border: 1px solid white;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px white;
+  margin: 0.2rem;
+  color: rgba(168, 44, 210, 0.56);
+`;
 
-export {CardDetail};
+export {CardDetail, CardSmall};

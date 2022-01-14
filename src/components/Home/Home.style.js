@@ -41,12 +41,12 @@ const InputNumber = styled.input`
   margin: 0.2rem;
   margin-bottom: 0;
 
-  background: rgb(216, 225, 238);
+
   font-size: 0.7rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  color: rgb(140, 156, 180);
+  background:: ${({bgError}) => (bgError ? "red" : "white")};
 
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -71,3 +71,6 @@ const InputNumber = styled.input`
   }
 `;
 export {HomeStyle, Input, InputNumber};
+// trzeba jakoś przez propsy ustawić validację && a double ampersand refers to an
+// instance of the component; this is useful if you're doing conditional styling 
+//overrides and don't want a style to apply to all instances of a particular component:

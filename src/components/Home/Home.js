@@ -11,9 +11,11 @@ const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [thereArePokemons, setThereArePokemons] = useState(false);
   const [load, setLoad] = useState(false);
+  // const [bgError, setBgError] = useState(false);
+
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
 
-  async function getAllPokemons() {
+ const getAllPokemons = async () => {
     setLoad(true);
     const response = await fetch(url);
     const data = await response.json();
@@ -32,12 +34,14 @@ const Home = () => {
 
   const handleSubmit = () => {
     if (number < 0) {
+      //setBgError(true);
       setValidateWarning("the number must be higher than 0");
       setValidationStyle({
         outline: `2px solid red`,
         backgroundColor: "#ff206391",
       });
     } else if (number > 1118) {
+      //setBgError(true);
       setValidateWarning("the number must be lower than 1118");
       setValidationStyle({
         outline: `2px solid red`,
@@ -58,6 +62,7 @@ const Home = () => {
               How many pokemons do you want to see?
               <InputNumber
                 style={validationStyle}
+                // bgError={bgError}
                 type="number"
                 placeholder="set numbers of pokemons"
                 value={undefined}

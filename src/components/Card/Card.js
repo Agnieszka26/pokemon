@@ -1,6 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react/cjs/react.development";
+import Detail from "../Detail/Detail";
 import {
   TypeTitle,
   NameTitle,
@@ -11,16 +12,20 @@ import {
 
 const Card = (props) => {
   // console.log("ile razy");
-  const [pokemonDetaliURL, setPokemonDetaliURL] = useState(null);
+  //const [pokemonDetal, setPokemonDetal] = useState(null);
   let navigate = useNavigate();
-  function handleClick() {
+
+  const handleClick = () => {
+    //setPokemonDetaliURL(`${props.url}`);
+    //let newUrl = props.url[props.id];
+    // let newUrl = props.url[props.id - 1];
+    // setPokemonDetal(props.pokemonDetails[props.id - 1]);
+    // console.log(pokemonDetal);
     navigate(`Detail/${props.id}/${props.name}`);
-    setPokemonDetaliURL(`${props.url}`);
-    console.log(pokemonDetaliURL);
-  }
+  };
 
   return (
-    <CardPokemon onClick={() => handleClick()}>
+    <CardPokemon onClick={handleClick}>
       <ImagePokemon>
         <img src={props.image} alt="img" />
       </ImagePokemon>
