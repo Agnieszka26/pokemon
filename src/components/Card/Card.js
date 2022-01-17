@@ -9,7 +9,6 @@ import {
 } from "./Card.styles";
 
 const Card = (props) => {
-  console.log("ile razy");
   const navigate = useNavigate();
 
   const handleClick = () => {

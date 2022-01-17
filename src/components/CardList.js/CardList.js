@@ -22,9 +22,13 @@ const CardList = ({pokemonData}) => {
 
   const getingDataOnePokemon = () => {
     pokemonUrl.forEach(async (url) => {
-      const res = await fetch(url);
-      const data = await res.json();
-      setPokemons((objOfPokemons) => [...objOfPokemons, data]);
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        setPokemons((objOfPokemons) => [...objOfPokemons, data]);
+      } catch (error) {
+        console.log(error);
+      }
     });
   };
 

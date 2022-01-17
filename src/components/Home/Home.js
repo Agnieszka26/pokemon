@@ -26,6 +26,10 @@ const Home = () => {
     getAllPokemons();
   };
 
+  const handleChange = (e) => {
+    setNumber(e.target.value);
+  };
+
   return (
     <>
       {pokemons.length === 0 && (
@@ -37,8 +41,7 @@ const Home = () => {
                 type="number"
                 placeholder="set numbers of pokemons"
                 value={undefined}
-                onChange={(e) => setNumber(e.target.value)}
-                // wyrzucić tę funkcję
+                onChange={handleChange}
               />
             </label>
             <Input
