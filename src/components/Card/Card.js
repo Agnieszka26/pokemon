@@ -11,16 +11,8 @@ import {
 } from "./Card.styles";
 
 const Card = (props) => {
-  // console.log("ile razy");
-  //const [pokemonDetal, setPokemonDetal] = useState(null);
   let navigate = useNavigate();
-
   const handleClick = () => {
-    //setPokemonDetaliURL(`${props.url}`);
-    //let newUrl = props.url[props.id];
-    // let newUrl = props.url[props.id - 1];
-    // setPokemonDetal(props.pokemonDetails[props.id - 1]);
-    // console.log(pokemonDetal);
     navigate(`Detail/${props.id}/${props.name}`);
   };
 

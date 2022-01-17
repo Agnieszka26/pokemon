@@ -3,57 +3,97 @@ import {useParams} from "react-router-dom";
 import {useState} from "react/cjs/react.development";
 import {CardDetail, CardSmall} from "./Detail.style";
 import {useEffect} from "react";
-import DropMenu from "./DropDown/DropMenu";
+import DropdownMenuItems from "./DropDown/DropdownMenuItems";
+import DropdownMenuAbility from "./DropDown/DropdownMenuAbility";
+import Moves from "./Moves/Moves";
+import Stats from "./Stats/Stats";
+import Gallery from "./Gallery/Gallery";
 
 const Detail = () => {
   const {userId} = useParams();
   const [detail, setDetail] = useState({});
   const [abilities, setAbilities] = useState([]);
-  const [update, setUpdate] = useState(false);
+  const [heldItems, setHeldItems] = useState([]);
+  const [image, setImage] = useState(null);
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [weight, setWeight] = useState("");
+  const [moves, setMoves] = useState([]);
+  const [stats, setStats] = useState([]);
+  const [images, setImages] = useState(null);
 
-  useEffect(() => {
-    getDetail();
-    //setAbilities(detail.abilities);
-    //console.log(abilities);
-  }, []); //<- tutaj ma być pusta array bo inaczej będzie infinite loop, poza funkcjami się dużo razy renderują rzeczy, może wszystko popwkładać do funkcji ?
+  useEffect(async () => {
+    await getDetail();
+  }, []);
+
+  useEffect(async () => {
+    if (detail !== undefined) {
+      await setAbilities(detail.abilities);
+      await setHeldItems(detail.held_items);
+      if (detail.sprites !== undefined) {
+        await setImage(detail.sprites.front_default);
+      }
+      if (detail.types !== undefined) {
+        await setType(detail.types[0].type.name);
+      }
+      await setName(detail.name);
+      await setWeight(detail.weight);
+      if (detail.moves !== undefined) {
+        setMoves(detail.moves);
+      }
+      if (detail.stats !== undefined) {
+        await setStats(detail.stats);
+      }
+      if (detail.sprites !== undefined) {
+        await setImages(detail.sprites);
+      }
+    }
+  });
+  //<- tutaj ma być pusta array bo inaczej będzie infinite loop, poza funkcjami się dużo razy renderują rzeczy, może wszystko popwkładać do funkcji ?
 
   let url = `https://pokeapi.co/api/v2/pokemon/${userId}`;
 
-  // console.log(url);
-  //console.log(abilities);
   const getDetail = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    await setDetail(data);
-    //console.log(url);
-    // await setUpdate(true);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      await setDetail(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // console.log(detail.abilities);
-  useEffect(() => {
-    setAbilities(detail.abilities);
-    //console.log(abilities);
-  });
-
-  // const ability = abilities.forEach((a) => {
-  //   console.log(a);
-  // });
-
-  // console.log(detail);
-
-  //console.log(abilities);
+  // console.log(images);
 
   return (
     <>
       <CardDetail>
         <CardSmall>
-          <DropMenu itemsDropdown={abilities} />
+          <DropdownMenuAbility itemsDropdown={abilities} />
         </CardSmall>
-        <CardSmall> IMAGE </CardSmall>
-        <CardSmall> Holy items </CardSmall>
-        <CardSmall> Moves </CardSmall>
-        <CardSmall> states </CardSmall>
-        <CardSmall> galery </CardSmall>
+        <CardSmall>
+          <img src={image} />
+          <p>name: </p>
+          <p>{name}</p>
+          <p>type:</p>
+          <p>{type}</p>
+          <p>weight</p>
+          <p>{weight}</p>
+        </CardSmall>
+
+        <CardSmall>
+          <DropdownMenuItems itemsDropdown={heldItems} />
+        </CardSmall>
+        <CardSmall>
+          <Moves moves={moves} />
+        </CardSmall>
+        <CardSmall>
+          <Stats stats={stats} />
+        </CardSmall>
+        <CardSmall>
+          <button> Gallery </button>
+          {/* <Gallery images={images} /> */}
+        </CardSmall>
       </CardDetail>
     </>
   );

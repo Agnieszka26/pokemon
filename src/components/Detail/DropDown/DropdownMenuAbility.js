@@ -3,7 +3,7 @@ import {useState} from "react";
 import arrow from "../../../Assets/angle-arrow-down.png";
 import {MenuLi, MenuUl, MenuA} from "./DropDown.styles";
 
-const DropdownMenu = (props) => {
+const DropdownMenuAbility = (props) => {
   const [isActive, setIsActive] = useState(false);
   const [abilities, setAbilities] = useState(null);
   const [condition, setCondition] = useState(false);
@@ -12,16 +12,13 @@ const DropdownMenu = (props) => {
   useEffect(() => {
     setAbilities(props.itemsDropdown);
     checkingConditions();
-    //console.log(abilities);
-    //   itemsDropdow.forEach((element) => {
-    //     console.log(element);
-    //  });
   });
 
   const checkingConditions = () => {
     if (isActive === true && abilities.length !== 0) {
       setCondition(true);
-      //console.log(abilities);
+    } else {
+      setCondition(false);
     }
   };
   // checkingConditions();
@@ -39,13 +36,10 @@ const DropdownMenu = (props) => {
       </button>
       {condition &&
         Object.values(abilities).map((item, id) => {
-          console.log(id);
           return (
-            <MenuUl>
+            <MenuUl key={id}>
               <MenuLi>
-                <MenuA key={id} href="#">
-                  {item.ability.name}
-                </MenuA>
+                <MenuA href="#">{item.ability.name}</MenuA>
               </MenuLi>
             </MenuUl>
           );
@@ -69,4 +63,4 @@ const DropdownMenu = (props) => {
   );
 };
 
-export default DropdownMenu;
+export default DropdownMenuAbility;

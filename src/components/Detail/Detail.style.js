@@ -4,8 +4,8 @@ const CardDetail = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: tomato;
-  width: 80%;
+
+  max-width: 95%;
   padding: 2rem;
   background: linear-gradient(
     180.2deg,
@@ -15,7 +15,7 @@ const CardDetail = styled.div`
   border: 2px solid white;
   border-radius: 20px;
   box-shadow: 4px 7px 19px rgba(168, 44, 210, 0.56);
-  margin: 0.5rem;
+  margin: 0.5rem auto;
   color: #bbc3cf;
 `;
 const CardSmall = styled.div`
