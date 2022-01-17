@@ -8,7 +8,6 @@ const Detail = () => {
   return (
     <>
       <CardDetail>
-        {/* <img src={image} /> */}
         <div> name: {name}</div>
         <div> id: {userId} </div>
       </CardDetail>

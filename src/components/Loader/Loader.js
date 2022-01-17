@@ -1,7 +1,7 @@
 import React from "react";
 import {Puff} from "react-loader-spinner";
 
-const Loading = () => {
+const Loader = () => {
   return (
     <>
       <h1 style={{color: "#5193f6"}}> Loading </h1>
@@ -10,4 +10,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default Loader;
