@@ -2,6 +2,7 @@
 
 
 :root{
+align-items: center;
   --background: #24324700;
 
   --background: #243247;
@@ -16,9 +17,9 @@
   --text-primary: hsla(0, 0%, 100%, 1);
   --text-secondary: hsla(0, 0%, 83%, 1);
   --border-color: white;
-  --card-shadow:4px 7px 19px #271c2b;
+  --card-shadow:4px 7px 19px #4e255e;
 
-
+background-color: #24324780;
  }
 
 

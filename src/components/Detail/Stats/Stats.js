@@ -1,27 +1,20 @@
-import react, {useEffect} from "react";
-import {useState} from "react";
+import {SmallText, Bigtext} from "../Detail.style";
+import {CardStats, StatsTile} from "./Stats.styles";
 
 const Stats = ({stats}) => {
-const [stat, setStat] = useState([]);
-
-  useEffect(() => {
-    if (stats.length !== 0) {
-      setStat(stats);
-    }
-  });
-
   return (
     <>
-      {stat &&
-        stat.map((item, id) => {
-          return (
-            <ul key={id}>
-              <ol key={id}>
-                {item.stat.name} {item.base_stat}
-              </ol>
-            </ul>
-          );
-        })}
+      <CardStats>
+        {stats &&
+          stats.map((item, id) => {
+            return (
+              <StatsTile key={id}>
+                <Bigtext> {item.base_stat} </Bigtext>
+                <SmallText>{item.stat.name} </SmallText>
+              </StatsTile>
+            );
+          })}
+      </CardStats>
     </>
   );
 };
