@@ -3,6 +3,7 @@ import {useState} from "react";
 import arrow from "../../../Assets/angle-arrow-down.png";
 import {MenuLi, MenuUl, MenuA} from "../DropDown/DropDown.styles";
 import Modal from "./Modal";
+//import HandleMoreModals from "./HandleMoreModals";
 
 const DropdownMenuAbility = (props) => {
   const [isActive, setIsActive] = useState(false);
@@ -24,7 +25,8 @@ const DropdownMenuAbility = (props) => {
     }
   };
 
-  const openModal = () => {
+  const openModal = (event) => {
+    event.preventDefault();
     setShowModal((prew) => !prew);
   };
 
@@ -37,16 +39,22 @@ const DropdownMenuAbility = (props) => {
       {condition &&
         Object.values(abilities).map((item, id) => {
           return (
-            <MenuUl key={id}>
-              <MenuLi>
+            <MenuUl>
+              <MenuLi key={id}>
                 <MenuA onClick={openModal} href="#">
                   {item.ability.name}
                 </MenuA>
-                <Modal showModal={showModal} setShowModal={setShowModal} />
+                <Modal
+                  key={id}
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  name={item.ability.name}
+                />
               </MenuLi>
             </MenuUl>
           );
         })}
+      {/* <HandleMoreModals /> */}
     </div>
   );
 };
