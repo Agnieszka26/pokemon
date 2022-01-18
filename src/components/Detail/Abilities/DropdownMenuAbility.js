@@ -1,58 +1,24 @@
-import react, {useEffect} from "react";
-import {useState} from "react";
+import { useState } from "react";
 import arrow from "../../../Assets/angle-arrow-down.png";
-import {MenuLi, MenuUl, MenuA} from "../DropDown/DropDown.styles";
-import Modal from "./Modal";
+import { MenuLi, MenuUl, MenuA } from "../DropDown/DropDown.styles";
+import ListItem from "./ListItem";
 //import HandleMoreModals from "./HandleMoreModals";
 
-const DropdownMenuAbility = (props) => {
+const DropdownMenuAbility = ({ abilities }) => {
   const [isActive, setIsActive] = useState(false);
-  const [abilities, setAbilities] = useState(null);
-  const [condition, setCondition] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const onClick = () => setIsActive(!isActive);
 
-  useEffect(() => {
-    setAbilities(props.itemsDropdown);
-    checkingConditions();
-  });
-
-  const checkingConditions = () => {
-    if (isActive === true && abilities.length !== 0) {
-      setCondition(true);
-    } else {
-      setCondition(false);
-    }
-  };
-
-  const openModal = (event) => {
-    event.preventDefault();
-    setShowModal((prew) => !prew);
-  };
+  const clickHandler = () => setIsActive(!isActive);
 
   return (
     <div>
-      <button onClick={onClick}>
+      <button onClick={clickHandler}>
         <span>Abilites</span>
-        <img src={arrow} width="10" height="10" />
+        <img src={arrow} width="10" height="10" alt="arrow" />
       </button>
-      {condition &&
-        Object.values(abilities).map((item, id) => {
-          return (
-            <MenuUl>
-              <MenuLi key={id}>
-                <MenuA onClick={openModal} href="#">
-                  {item.ability.name}
-                </MenuA>
-                <Modal
-                  key={id}
-                  showModal={showModal}
-                  setShowModal={setShowModal}
-                  name={item.ability.name}
-                />
-              </MenuLi>
-            </MenuUl>
-          );
+      {isActive &&
+        abilities !== 0 &&
+        abilities.map((item, id) => {
+          return <ListItem name={item.ability.name} />;
         })}
       {/* <HandleMoreModals /> */}
     </div>

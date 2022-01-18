@@ -1,6 +1,4 @@
-import react from "react";
-
-const Modal = ({showModal, setShowModal, name}) => {
-  return <>{showModal ? <div>{name}</div> : null}</>;
+const Modal = ({ name }) => {
+  return <div>{name}</div>;
 };
 export default Modal;

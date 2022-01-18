@@ -1,7 +1,7 @@
-import react, {useEffect} from "react";
-import {useState} from "react";
+import react, { useEffect } from "react";
+import { useState } from "react";
 import arrow from "../../../Assets/angle-arrow-down.png";
-import {MenuLi, MenuUl, MenuA} from "./DropDown.styles";
+import { MenuLi, MenuUl, MenuA } from "./DropDown.styles";
 
 const DropdownMenuItems = (props) => {
   const [isActive, setIsActive] = useState(false);
