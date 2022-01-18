@@ -4,7 +4,7 @@ import {useState} from "react/cjs/react.development";
 import {CardDetail, CardSmall} from "./Detail.style";
 import {useEffect} from "react";
 import DropdownMenuItems from "./DropDown/DropdownMenuItems";
-import DropdownMenuAbility from "./DropDown/DropdownMenuAbility";
+import DropdownMenuAbility from "../Detail/Abilities/DropdownMenuAbility";
 import Moves from "./Moves/Moves";
 import Stats from "./Stats/Stats";
 import Gallery from "./Gallery/Gallery";

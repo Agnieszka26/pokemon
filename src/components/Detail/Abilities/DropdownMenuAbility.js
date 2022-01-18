@@ -1,12 +1,14 @@
 import react, {useEffect} from "react";
 import {useState} from "react";
 import arrow from "../../../Assets/angle-arrow-down.png";
-import {MenuLi, MenuUl, MenuA} from "./DropDown.styles";
+import {MenuLi, MenuUl, MenuA} from "../DropDown/DropDown.styles";
+import Modal from "./Modal";
 
 const DropdownMenuAbility = (props) => {
   const [isActive, setIsActive] = useState(false);
   const [abilities, setAbilities] = useState(null);
   const [condition, setCondition] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const onClick = () => setIsActive(!isActive);
 
   useEffect(() => {
@@ -21,12 +23,10 @@ const DropdownMenuAbility = (props) => {
       setCondition(false);
     }
   };
-  // checkingConditions();
 
-  // console.log(props.itemsDropdown.length && props.itemsDropdown === undefined);
-  //  if( props.itemsDropdown.length !== 0 ){
-  //   console.log(props.itemsDropdown);
-  //  }
+  const openModal = () => {
+    setShowModal((prew) => !prew);
+  };
 
   return (
     <div>
@@ -39,26 +39,14 @@ const DropdownMenuAbility = (props) => {
           return (
             <MenuUl key={id}>
               <MenuLi>
-                <MenuA href="#">{item.ability.name}</MenuA>
+                <MenuA onClick={openModal} href="#">
+                  {item.ability.name}
+                </MenuA>
+                <Modal showModal={showModal} setShowModal={setShowModal} />
               </MenuLi>
             </MenuUl>
           );
         })}
-      {/* {condition  ? (
-        <MenuUl>
-          <MenuLi>
-            <MenuA href="#">Messages</MenuA>
-          </MenuLi>
-          <MenuLi>
-            <MenuA href="#">Trips</MenuA>
-          </MenuLi>
-          <MenuLi>
-            <MenuA href="#">Saved</MenuA>
-          </MenuLi>
-        </MenuUl>
-      ) : (
-        <div></div>
-      )} */}
     </div>
   );
 };
