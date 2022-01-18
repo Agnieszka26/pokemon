@@ -1,13 +1,17 @@
 import react, {useEffect} from "react";
 import {useState} from "react";
-import arrow from "../../../Assets/angle-arrow-down.png";
+import { Button, Container} from "./DropdownMenu.styles";
+import arrowDown from "../../../Assets/angle-arrow-down.png";
+import arrowUp from "../../../Assets/up-arrow-angle.png";
 import {MenuLi, MenuUl, MenuA} from "../DropDown/DropDown.styles";
 import Modal from "./Modal";
+//import {CardDetail, CardSmall, SmallText, Bigtext, ImageContainer} from "../Detail.style"
 //import HandleMoreModals from "./HandleMoreModals";
 
 const DropdownMenuAbility = (props) => {
   const [isActive, setIsActive] = useState(false);
   const [abilities, setAbilities] = useState(null);
+  const [arrow, setArrow] = useState(arrowDown);
   const [condition, setCondition] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const onClick = () => setIsActive(!isActive);
@@ -20,8 +24,10 @@ const DropdownMenuAbility = (props) => {
   const checkingConditions = () => {
     if (isActive === true && abilities.length !== 0) {
       setCondition(true);
+      setArrow(arrowUp);
     } else {
       setCondition(false);
+      setArrow(arrowDown);
     }
   };
 
@@ -30,12 +36,17 @@ const DropdownMenuAbility = (props) => {
     setShowModal((prew) => !prew);
   };
 
+  // if(condition){
+  //   arrow = arrowDown;
+  // }else {
+  //   arrow = arrowUp;
+  // }
   return (
-    <div>
-      <button onClick={onClick}>
-        <span>Abilites</span>
+    <Container>
+      <Button onClick={onClick}>
+        <span style={{margin:"0.25rem"}}>Abilites</span>
         <img src={arrow} width="10" height="10" />
-      </button>
+      </Button>
       {condition &&
         Object.values(abilities).map((item, id) => {
           return (
@@ -55,7 +66,7 @@ const DropdownMenuAbility = (props) => {
           );
         })}
       {/* <HandleMoreModals /> */}
-    </div>
+    </Container>
   );
 };
 

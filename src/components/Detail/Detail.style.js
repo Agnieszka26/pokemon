@@ -3,9 +3,9 @@ import styled from "styled-components";
 const CardDetail = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  // justify-content: center;
 
-  max-width: 95%;
+  //max-width: 100%;
   padding: 2rem;
   background: linear-gradient(
     180.2deg,
@@ -19,7 +19,10 @@ const CardDetail = styled.div`
   color: #bbc3cf;
 `;
 const CardSmall = styled.div`
-  flex: 0 0 100px;
+  justify-content: center;
+  // justify-items: center;
+  flex-grow: 1;
+  width: 22%;
   padding: 1rem;
   background: hsla(0, 0%, 83%, 1);
   border: 1px solid white;
@@ -27,6 +30,28 @@ const CardSmall = styled.div`
   box-shadow: 2px 4px 10px white;
   margin: 0.2rem;
   color: rgba(168, 44, 210, 0.56);
+
+ 
 `;
 
-export {CardDetail, CardSmall};
+const ImageContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+const SmallText = styled.p`
+  text-align: center;
+  color: #271c2b;
+  font-size: 9px;
+  margin-top: 0;
+  padding-top: 0;
+`;
+
+const Bigtext = styled.h3`
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+`;
+
+export {CardDetail, CardSmall, SmallText, Bigtext, ImageContainer};

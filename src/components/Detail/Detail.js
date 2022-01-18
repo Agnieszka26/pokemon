@@ -1,7 +1,13 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 import {useState} from "react/cjs/react.development";
-import {CardDetail, CardSmall} from "./Detail.style";
+import {
+  CardDetail,
+  CardSmall,
+  SmallText,
+  Bigtext,
+  ImageContainer,
+} from "./Detail.style";
 import {useEffect} from "react";
 import DropdownMenuItems from "./DropDown/DropdownMenuItems";
 import DropdownMenuAbility from "../Detail/Abilities/DropdownMenuAbility";
@@ -72,13 +78,18 @@ const Detail = () => {
           <DropdownMenuAbility itemsDropdown={abilities} />
         </CardSmall>
         <CardSmall>
-          <img src={image} />
-          <p>name: </p>
-          <p>{name}</p>
-          <p>type:</p>
-          <p>{type}</p>
-          <p>weight</p>
-          <p>{weight}</p>
+          <ImageContainer>
+            <img src={image} />
+          </ImageContainer>
+
+          <Bigtext>{name}</Bigtext>
+          <SmallText>name </SmallText>
+
+          <Bigtext>{type}</Bigtext>
+          <SmallText>type</SmallText>
+
+          <Bigtext>{weight}</Bigtext>
+          <SmallText>weight</SmallText>
         </CardSmall>
 
         <CardSmall>
