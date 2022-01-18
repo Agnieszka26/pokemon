@@ -51,30 +51,6 @@ const Detail = () => {
   // }, []);
   //<- tutaj ma być pusta array bo inaczej będzie infinite loop, poza funkcjami się dużo razy renderują rzeczy, może wszystko popwkładać do funkcji ?
 
-  // const someFunction = () => {
-  //   if (detail.length) {
-  //     setAbilities(detail.abilities);
-  //     setHeldItems(detail.held_items);
-  //     if (detail.sprites.length) {
-  //       setImage(detail.sprites.front_default);
-  //     }
-  //     if (detail.types.length) {
-  //       setType(detail.types[0].type.name);
-  //     }
-  //     setName(detail.name);
-  //     setWeight(detail.weight);
-  //     if (detail.moves !== undefined) {
-  //       setMoves(detail.moves.length);
-  //     }
-  //     if (detail.stats !== undefined) {
-  //       setStats(detail.stats);
-  //     }
-  //     if (detail.sprites !== undefined) {
-  //       setImages(detail.sprites);
-  //     }
-  //   }
-  // };
-
   let url = `https://pokeapi.co/api/v2/pokemon/${userId}`;
 
   const getDetail = async () => {
