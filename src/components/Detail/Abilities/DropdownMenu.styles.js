@@ -5,7 +5,7 @@ const Button = styledComponents.button`
 background: none;
 border: none;
 text-align: center;
-font-size: 17px;
+font-size: 75%;
 color: rgba(168, 44, 210, 0.56);
 
 

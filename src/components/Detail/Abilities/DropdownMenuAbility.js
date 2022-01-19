@@ -30,7 +30,7 @@ const DropdownMenuAbility = ({itemsDropdown}) => {
     <Container>
       <Button onClick={clickHandler}>
         <span style={{margin: "0.25rem"}}>Abilites</span>
-        <img src={arrow} width="10" height="10" />
+        <img src={arrow} width="8" height="8" />
       </Button>
       {isActive &&
         itemsDropdown.length !== 0 &&

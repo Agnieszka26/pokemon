@@ -14,6 +14,8 @@ import DropdownMenuAbility from "../Detail/Abilities/DropdownMenuAbility";
 import Moves from "./Moves/Moves";
 import Stats from "./Stats/Stats";
 import Gallery from "./Gallery/Gallery";
+import {useNavigate} from "react-router-dom";
+import Tooltip from "react-simple-tooltip";
 
 const Detail = () => {
   const {userId} = useParams();
@@ -72,6 +74,10 @@ const Detail = () => {
   const {abilities, moves, held_items, stats, sprites, types, name, weight} =
     detail;
   // console.log(sprites.front_default);
+  let navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/Detail/${userId}/${name}/Gallery`);
+  };
 
   return (
     <>
@@ -99,14 +105,40 @@ const Detail = () => {
             <DropdownMenuItems itemsDropdown={held_items} />
           </CardSmall>
           <CardSmall>
+            <Tooltip
+              background={"#243247"}
+              radius={10}
+              arrow={8}
+              placement={"left"}
+              content="Moves which pokemon can make"
+            >
+              <button style={{borderRadius:"50%"}}>?</button>
+            </Tooltip>
             <Moves moves={moves} />
           </CardSmall>
-          <CardSmall>      
+          <CardSmall>
+            <Tooltip
+              background={"#243247"}
+              radius={10}
+              arrow={8}
+              placement={"left"}
+              content="Basic and important statistic of pokemon"
+            >
+              <button style={{borderRadius:"50%"}}>?</button>
+            </Tooltip>
             <Stats stats={stats} />
           </CardSmall>
           <CardSmall>
-            <button> Gallery </button>
-            {/* <Gallery images={sprites} /> */}
+            <Tooltip
+              background={"#243247"}
+              radius={10}
+              arrow={8}
+              placement={"left"}
+              content="Pictures of pokemons"
+            >
+              <button style={{borderRadius:"50%"}}>?</button>
+            </Tooltip>
+            <button onClick={handleClick}> Gallery </button>
           </CardSmall>
         </CardDetail>
       )}

@@ -1,59 +1,44 @@
 import react, {useEffect} from "react";
 import {useState} from "react";
-import arrow from "../../../Assets/angle-arrow-down.png";
-import {MenuLi, MenuUl, MenuA} from "./DropDown.styles";
+import {Button} from "./DropDown.styles";
+import arrowDown from "../../../Assets/angle-arrow-down.png";
+import arrowUp from "../../../Assets/up-arrow-angle.png";
 
-const DropdownMenuItems = (props) => {
+const DropdownMenuItems = ({itemsDropdown}) => {
   const [isActive, setIsActive] = useState(false);
-  const [heldItems, setHeldItems] = useState(null);
-  const [condition, setCondition] = useState(false);
-  const onClick = () => setIsActive(!isActive);
 
-  useEffect(() => {
-    setHeldItems(props.itemsDropdown);
-    checkingConditions();
-  });
+  const [arrow, setArrow] = useState(arrowDown);
 
-  const checkingConditions = () => {
-    if (isActive === true && heldItems.length !== 0) {
-      setCondition(true);
+  const togglingArrows = () => {
+    if (arrow === arrowDown) {
+      setArrow(arrowUp);
     } else {
-      setCondition(false);
+      setArrow(arrowDown);
     }
+  };
+
+  const clickHandler = () => {
+    setIsActive(!isActive);
+    togglingArrows();
   };
 
   return (
     <div>
-      {condition ? (
-        Object.values(heldItems).map((item, id) => {
-          <div>
-            <button onClick={onClick}>
-              <span>Held items</span>
-              <img src={arrow} width="10" height="10" />
-            </button>
-            <MenuUl key={id}>
-              <MenuLi>
-                <MenuA href="#">{item}</MenuA>
-              </MenuLi>
-            </MenuUl>
-          </div>;
-        })
-      ) : (
-        <span>No held items</span>
-      )}
+      <Button onClick={clickHandler}>
+        <span style={{margin: "0.1rem"}}>Held Items</span>
+        <img src={arrow} width="8" height="8" />
+      </Button>
+      {isActive &&
+        (itemsDropdown.length !== 0 ? (
+        
+          itemsDropdown.map((item, id) => {
+            return <p key={id}>{item.item.name}</p>;
+          })
+        ) : (
+          <p>No held Items</p>
+        ))}
     </div>
   );
 };
 
 export default DropdownMenuItems;
-
-// {condition &&
-//   Object.values(heldItems).map((item, id) => {
-//     return (
-//       <MenuUl key={id}>
-//         <MenuLi>
-//           <MenuA href="#">{item}</MenuA>
-//         </MenuLi>
-//       </MenuUl>
-//     );
-//   })}

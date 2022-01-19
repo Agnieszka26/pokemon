@@ -1,7 +1,5 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react/cjs/react.development";
-import Detail from "../Detail/Detail";
 import {
   TypeTitle,
   NameTitle,
