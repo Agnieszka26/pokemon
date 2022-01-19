@@ -6,6 +6,7 @@ const HomeStyle = styled.div`
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
+  width: 50vw;
   padding: 1rem;
   margin: 0.5rem;
   background: linear-gradient(
@@ -18,7 +19,7 @@ const HomeStyle = styled.div`
   box-shadow: 4px 7px 19px rgba(168, 44, 210, 0.56);
   line-height: 2rem;
   text-align: center;
-  width: 50vw;
+ 
 `;
 
 const Input = styled.input`
@@ -40,8 +41,6 @@ const InputNumber = styled.input`
   padding: 1rem;
   margin: 0.2rem;
   margin-bottom: 0;
-
-
   font-size: 0.7rem;
   border-radius: 8px;
   border: none;
@@ -71,6 +70,3 @@ const InputNumber = styled.input`
   }
 `;
 export {HomeStyle, Input, InputNumber};
-// trzeba jakoś przez propsy ustawić validację && a double ampersand refers to an
-// instance of the component; this is useful if you're doing conditional styling 
-//overrides and don't want a style to apply to all instances of a particular component:

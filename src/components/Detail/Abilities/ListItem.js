@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Modal from "./Modal";
-import {Item, ItemText} from "./ListItem.styles"
+import {Item} from "./ListItem.styles";
 
 export default function ListItem({item}) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -11,11 +11,10 @@ export default function ListItem({item}) {
 
   return (
     <>
-        <Item onClick={handleClick}>
-          {item.name}
-          {isModalVisible && <Modal url={item.url} />}
-        </Item>
-  
+      <Item onClick={handleClick}>
+        {item.name}
+        {isModalVisible && <Modal url={item.url} />}
+      </Item>
     </>
   );
 }

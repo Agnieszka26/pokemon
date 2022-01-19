@@ -3,9 +3,9 @@ import styled from "styled-components";
 const CardStats = styled.div`
   display: flex;
   flex-wrap: wrap;
-
   width: 100%;
 `;
+
 const StatsTile = styled.div`
   border-radius: 3px;
   margin: 1px;

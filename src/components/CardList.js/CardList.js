@@ -18,7 +18,6 @@ const CardList = ({pokemonData}) => {
     pokemonData.forEach((element) => {
       setPokemonUrl((arrOfUrl) => [...arrOfUrl, element.url]);
     });
-    console.log(pokemonData);
   };
 
   const getingDataOnePokemon = () => {

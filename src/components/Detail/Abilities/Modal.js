@@ -1,9 +1,12 @@
 import {useState, useEffect} from "react";
 import {BackgroundModal, ModalContainer, ModalText} from "./Modals.styles";
-//import {useEffect} from "react/cjs/react.development";
 
 const Modal = ({url}) => {
   const [ability, setAbility] = useState([]);
+
+  useEffect(() => {
+    getAbilites();
+  }, []);
 
   const getAbilites = async () => {
     try {
@@ -14,9 +17,6 @@ const Modal = ({url}) => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getAbilites();
-  }, []);
 
   if (ability.effect_entries !== undefined) {
     setAbility(ability.effect_entries[0].effect);

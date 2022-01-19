@@ -10,11 +10,10 @@ import {
   ButtonTooltip,
 } from "./Detail.style";
 import {useEffect} from "react";
-import DropdownMenuItems from "./DropDown/DropdownMenuItems";
+import DropdownMenuItems from "./HeldItems/DropdownMenuItems";
 import DropdownMenuAbility from "../Detail/Abilities/DropdownMenuAbility";
 import Moves from "./Moves/Moves";
 import Stats from "./Stats/Stats";
-import Gallery from "./Gallery/Gallery";
 import {useNavigate} from "react-router-dom";
 import Tooltip from "react-simple-tooltip";
 import {MovesButton} from "../Detail/Moves/Moves.styles";
@@ -22,44 +21,10 @@ import {MovesButton} from "../Detail/Moves/Moves.styles";
 const Detail = () => {
   const {userId} = useParams();
   const [detail, setDetail] = useState({});
-  // const [abilities, setAbilities] = useState([]);
-  // const [heldItems, setHeldItems] = useState([]);
-  // const [image, setImage] = useState(null);
-  // const [name, setName] = useState("");
-  // const [type, setType] = useState("");
-  // const [weight, setWeight] = useState("");
-  // const [moves, setMoves] = useState([]);
-  // const [stats, setStats] = useState([]);
-  const [images, setImages] = useState(null);
 
-  useEffect(async () => {
-    await getDetail();
+  useEffect( () => {
+    getDetail();
   }, []);
-
-  // useEffect(async () => {
-  //   if (detail !== undefined) {
-  //     await setAbilities(detail.abilities);
-  //     await setHeldItems(detail.held_items);
-  //     if (detail.sprites !== undefined) {
-  //       await setImage(detail.sprites.front_default);
-  //     }
-  //     if (detail.types !== undefined) {
-  //       await setType(detail.types[0].type.name);
-  //     }
-  //     await setName(detail.name);
-  //     await setWeight(detail.weight);
-  //     if (detail.moves !== undefined) {
-  //       setMoves(detail.moves);
-  //     }
-  //     if (detail.stats !== undefined) {
-  //       await setStats(detail.stats);
-  //     }
-  //     if (detail.sprites !== undefined) {
-  //       await setImages(detail.sprites);
-  //     }
-  //   }
-  // });
-  //<- tutaj ma być pusta array bo inaczej będzie infinite loop, poza funkcjami się dużo razy renderują rzeczy, może wszystko popwkładać do funkcji ?
 
   let url = `https://pokeapi.co/api/v2/pokemon/${userId}`;
 
@@ -75,7 +40,7 @@ const Detail = () => {
 
   const {abilities, moves, held_items, stats, sprites, types, name, weight} =
     detail;
-  // console.log(sprites.front_default);
+
   let navigate = useNavigate();
   const handleClick = () => {
     navigate(`/Detail/${userId}/${name}/Gallery`);
@@ -83,7 +48,7 @@ const Detail = () => {
 
   return (
     <>
-      {Object.keys(detail).length && (
+      {Object.keys(detail).length && ( //to działa ??? jak zmieniam na normalne detail.length to nie można dostać się do pokemona
         <CardDetail>
           <CardSmall>
             <DropdownMenuAbility itemsDropdown={abilities} />
@@ -92,17 +57,13 @@ const Detail = () => {
             <ImageContainer>
               <img src={sprites.front_default} />
             </ImageContainer>
-
             <Bigtext>{name}</Bigtext>
             <SmallText>name </SmallText>
-
             <Bigtext>{types[0].type.name}</Bigtext>
             <SmallText>type</SmallText>
-
             <Bigtext>{weight}</Bigtext>
             <SmallText>weight</SmallText>
           </CardSmall>
-
           <CardSmall>
             <DropdownMenuItems itemsDropdown={held_items} />
           </CardSmall>
