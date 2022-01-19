@@ -18,6 +18,7 @@ const CardList = ({pokemonData}) => {
     pokemonData.forEach((element) => {
       setPokemonUrl((arrOfUrl) => [...arrOfUrl, element.url]);
     });
+    console.log(pokemonData);
   };
 
   const getingDataOnePokemon = () => {
@@ -35,17 +36,19 @@ const CardList = ({pokemonData}) => {
   return (
     <>
       <CardListBody>
-        {pokemons.map((detail) => (
-          <Card
-            url={pokemonUrl}
-            id={detail.id}
-            pokemonDetails={pokemons}
-            image={detail.sprites.front_shiny}
-            key={detail.id}
-            name={detail.name}
-            baseType={detail.types[0].type.name}
-          />
-        ))}
+        {pokemons
+          .sort((a, b) => a.id - b.id)
+          .map((detail) => (
+            <Card
+              url={pokemonUrl}
+              id={detail.id}
+              pokemonDetails={pokemons}
+              image={detail.sprites.front_shiny}
+              key={detail.id}
+              name={detail.name}
+              baseType={detail.types[0].type.name}
+            />
+          ))}
       </CardListBody>
     </>
   );
