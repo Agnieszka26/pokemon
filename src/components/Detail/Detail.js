@@ -7,6 +7,7 @@ import {
   SmallText,
   Bigtext,
   ImageContainer,
+  ButtonTooltip,
 } from "./Detail.style";
 import {useEffect} from "react";
 import DropdownMenuItems from "./DropDown/DropdownMenuItems";
@@ -16,6 +17,7 @@ import Stats from "./Stats/Stats";
 import Gallery from "./Gallery/Gallery";
 import {useNavigate} from "react-router-dom";
 import Tooltip from "react-simple-tooltip";
+import {MovesButton} from "../Detail/Moves/Moves.styles";
 
 const Detail = () => {
   const {userId} = useParams();
@@ -104,41 +106,41 @@ const Detail = () => {
           <CardSmall>
             <DropdownMenuItems itemsDropdown={held_items} />
           </CardSmall>
-          <CardSmall>
+          <CardSmall style={{display: "flex"}}>
+            <Moves moves={moves} />
             <Tooltip
               background={"#243247"}
               radius={10}
               arrow={8}
-              placement={"left"}
+              placement={"top"}
               content="Moves which pokemon can make"
             >
-              <button style={{borderRadius:"50%"}}>?</button>
+              <ButtonTooltip>?</ButtonTooltip>
             </Tooltip>
-            <Moves moves={moves} />
           </CardSmall>
-          <CardSmall>
+          <CardSmall style={{display: "flex"}}>
+            <Stats stats={stats} />
             <Tooltip
               background={"#243247"}
               radius={10}
               arrow={8}
-              placement={"left"}
+              placement={"top"}
               content="Basic and important statistic of pokemon"
             >
-              <button style={{borderRadius:"50%"}}>?</button>
+              <ButtonTooltip>?</ButtonTooltip>
             </Tooltip>
-            <Stats stats={stats} />
           </CardSmall>
-          <CardSmall>
+          <CardSmall style={{display: "flex"}}>
+            <MovesButton onClick={handleClick}> Gallery </MovesButton>
             <Tooltip
               background={"#243247"}
               radius={10}
               arrow={8}
-              placement={"left"}
+              placement={"top"}
               content="Pictures of pokemons"
             >
-              <button style={{borderRadius:"50%"}}>?</button>
+              <ButtonTooltip>?</ButtonTooltip>
             </Tooltip>
-            <button onClick={handleClick}> Gallery </button>
           </CardSmall>
         </CardDetail>
       )}

@@ -30,14 +30,12 @@ const CardSmall = styled.div`
   box-shadow: 2px 4px 10px white;
   margin: 0.2rem;
   color: rgba(168, 44, 210, 0.56);
-
- 
 `;
 
 const ImageContainer = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const SmallText = styled.p`
   text-align: center;
@@ -54,4 +52,26 @@ const Bigtext = styled.h3`
   padding-bottom: 0;
 `;
 
-export {CardDetail, CardSmall, SmallText, Bigtext, ImageContainer};
+const ButtonTooltip = styled.button`
+  border-radius: 50%;
+  color: #243247;
+  width: 20px;
+  // text-align: center;
+  font-size: 12px;
+  margin: 5px;
+  padding: 0;
+  border: 2px solid #243247;
+  &:hover {
+    color: white;
+    background-color: #243247;
+  }
+`;
+
+export {
+  ButtonTooltip,
+  CardDetail,
+  CardSmall,
+  SmallText,
+  Bigtext,
+  ImageContainer,
+};

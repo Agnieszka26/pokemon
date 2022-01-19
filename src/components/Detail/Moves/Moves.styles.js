@@ -31,9 +31,11 @@ display:inline-block;
 cursor:pointer;
 color:#ffffff;
 font-family:Arial;
-font-size:15px;
+font-size:75%;
 font-weight:bold;
-padding:6px 24px;
+// padding:10% 5%;
+width:100%;
+height:20%;
 text-decoration:none;
 text-shadow:0px 1px 0px #9752cc;
 
@@ -44,34 +46,6 @@ background-color:#bc80ea;
 position:relative;
 top:1px;
 }
-
-      
-
-
-
-
-
-// font-size:20px;
-// margin: 5% 15%;
-// border-width:0px;
-// color:#bbc3cf;
-// border-radius:5px;
-
-// text-shadow: 0px 1px 0px #000;
-// background: linear-gradient(
-//     180.2deg,
-//     #f947e8,
-//     #5193f6
-//   );
-  
-// &:hover{
-//     background: linear-gradient(
-//         180.2deg,
-        
-//         #5193f6,
-//         #f947e8
-//       );
-
     
 }
 `;
