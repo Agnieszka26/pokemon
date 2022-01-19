@@ -15,13 +15,13 @@ const Home = () => {
 
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
 
- const getAllPokemons = async () => {
+  const getAllPokemons = async () => {
     setLoad(true);
     const response = await fetch(url);
     const data = await response.json();
     setPokemons(data.results);
     setLoad(false);
-  }
+  };
 
   const validationStyles = {
     validationText: {
@@ -31,6 +31,7 @@ const Home = () => {
       padding: 0,
     },
   };
+
 
   const handleSubmit = () => {
     if (number < 0) {
@@ -77,8 +78,9 @@ const Home = () => {
               {validationWarning}
             </div>
             <Input
-              type="button"
+              type="submit"
               onClick={handleSubmit}
+             
               value="Load pokemons!"
             ></Input>
           </form>
