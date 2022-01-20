@@ -49,6 +49,12 @@ const Home = () => {
     }
   };
 
+  const handleEnter = (e) => {
+    if (e.which === 13) {
+      handleSubmit();
+    }
+  };
+
   return (
     <>
       {!thereArePokemons && (
@@ -66,13 +72,14 @@ const Home = () => {
                   setValidateWarning(""),
                   setValidationStyle({outline: `none`})
                 )}
+                onKeyPress={handleEnter}
               />
             </label>
             <div style={validationStyles.validationText}>
               {validationWarning}
             </div>
             <Input
-              type="submit"
+              type="button"
               onClick={handleSubmit}
               value="Load pokemons!"
             ></Input>

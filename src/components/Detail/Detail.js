@@ -7,6 +7,7 @@ import {
   SmallText,
   Bigtext,
   ImageContainer,
+  Flex,
   ButtonTooltip,
 } from "./Detail.style";
 import {useEffect} from "react";
@@ -22,7 +23,7 @@ const Detail = () => {
   const {userId} = useParams();
   const [detail, setDetail] = useState({});
 
-  useEffect( () => {
+  useEffect(() => {
     getDetail();
   }, []);
 
@@ -67,41 +68,49 @@ const Detail = () => {
           <CardSmall>
             <DropdownMenuItems itemsDropdown={held_items} />
           </CardSmall>
-          <CardSmall style={{display: "flex"}}>
-            <Moves moves={moves} />
-            <Tooltip
-              background={"#243247"}
-              radius={10}
-              arrow={8}
-              placement={"top"}
-              content="Moves which pokemon can make"
-            >
-              <ButtonTooltip>?</ButtonTooltip>
-            </Tooltip>
+          <CardSmall>
+            <Flex>
+              <Moves moves={moves} />
+              <Tooltip
+                background={"#243247"}
+                radius={10}
+                arrow={8}
+                placement={"top"}
+                content="Moves which pokemon can make"
+              >
+                <ButtonTooltip>?</ButtonTooltip>
+              </Tooltip>
+            </Flex>
           </CardSmall>
-          <CardSmall style={{display: "flex"}}>
-            <Stats stats={stats} />
-            <Tooltip
-              background={"#243247"}
-              radius={10}
-              arrow={8}
-              placement={"top"}
-              content="Basic and important statistic of pokemon"
-            >
-              <ButtonTooltip>?</ButtonTooltip>
-            </Tooltip>
+          <CardSmall>
+            <Flex>
+              <h4>Statistics</h4>
+              <Tooltip
+                background={"#243247"}
+                radius={10}
+                arrow={8}
+                placement={"top"}
+                content="Basic and important statistic of pokemon"
+              >
+                <ButtonTooltip>?</ButtonTooltip>
+              </Tooltip>
+            </Flex>
+
+            <Stats style={{display: "flex"}} stats={stats} />
           </CardSmall>
-          <CardSmall style={{display: "flex"}}>
-            <MovesButton onClick={handleClick}> Gallery </MovesButton>
-            <Tooltip
-              background={"#243247"}
-              radius={10}
-              arrow={8}
-              placement={"top"}
-              content="Pictures of pokemons"
-            >
-              <ButtonTooltip>?</ButtonTooltip>
-            </Tooltip>
+          <CardSmall>
+            <Flex>
+              <MovesButton onClick={handleClick}> Gallery </MovesButton>
+              <Tooltip
+                background={"#243247"}
+                radius={10}
+                arrow={8}
+                placement={"top"}
+                content="Pictures of pokemons"
+              >
+                <ButtonTooltip>?</ButtonTooltip>
+              </Tooltip>
+            </Flex>
           </CardSmall>
         </CardDetail>
       )}

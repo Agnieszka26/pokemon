@@ -24,7 +24,7 @@ const DropdownMenuAbility = ({itemsDropdown}) => {
   return (
     <Container>
       <Button onClick={clickHandler}>
-        <span style={{margin: "0.25rem"}}>Abilites</span>
+        <span style={{margin: "0.25rem"}}> Abilites </span>
         <img src={arrow} width="8" height="8"  alt="" />
       </Button>
       {isActive &&

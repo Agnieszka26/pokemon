@@ -24,7 +24,8 @@ width: 100%;
 const MovesButton = styledComponents.button`
 display:inline-block;
 width:100%;
-height:20%;
+padding:.5rem;
+margin-right: .6rem;
 background-color:#dfbdfa;
 box-shadow:inset 0px 1px 0px 0px #efdcfb;
 border-radius:6px;

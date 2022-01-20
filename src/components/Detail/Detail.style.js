@@ -49,6 +49,11 @@ const Bigtext = styled.h3`
   text-align: center;
   font-size: 17px;
 `;
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const ButtonTooltip = styled.button`
   width: 20px;
@@ -72,4 +77,5 @@ export {
   SmallText,
   Bigtext,
   ImageContainer,
+  Flex,
 };

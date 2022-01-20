@@ -12,8 +12,8 @@ const Gallery = () => {
   const {userId} = useParams();
   let url = `https://pokeapi.co/api/v2/pokemon/${userId}`;
 
-  useEffect(async () => {
-    await getDetail();
+  useEffect(() => {
+    getDetail();
   }, []);
 
   const getDetail = async () => {
@@ -25,6 +25,7 @@ const Gallery = () => {
       console.log(error);
     }
   };
+
   return (
     <>
       <Title>Gallery</Title>
