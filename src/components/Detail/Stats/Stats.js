@@ -5,15 +5,13 @@ const Stats = ({stats}) => {
   return (
     <>
       <CardStats>
-        {stats &&
-          stats.map((item, id) => {
-            return (
-              <StatsTile key={id}>
-                <Bigtext> {item.base_stat} </Bigtext>
-                <SmallText>{item.stat.name} </SmallText>
-              </StatsTile>
-            );
-          })}
+        {stats.length &&
+          stats.map((item, id) => (
+            <StatsTile key={id}>
+              <Bigtext> {item.base_stat} </Bigtext>
+              <SmallText>{item.stat.name} </SmallText>
+            </StatsTile>
+          ))}
       </CardStats>
     </>
   );

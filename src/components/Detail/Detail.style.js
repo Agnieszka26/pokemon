@@ -51,8 +51,8 @@ const Bigtext = styled.h3`
 `;
 const Flex = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
 `;
 
 const ButtonTooltip = styled.button`

@@ -44,7 +44,7 @@ const Detail = () => {
 
   let navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/Detail/${userId}/${name}/Gallery`);
+    navigate(`/Pokemonlist/Detail/${userId}/${name}/Gallery`);
   };
 
   return (
@@ -83,8 +83,10 @@ const Detail = () => {
             </Flex>
           </CardSmall>
           <CardSmall>
-            <Flex>
-              <h4>Statistics</h4>
+            <Flex
+              style={{margin:"0 0 1rem 0", padding:"0", alignItems: "center", justifyContent: "space-between"}}
+            >
+              <h4 style={{margin:"0", padding:"0"}}>Statistics</h4>
               <Tooltip
                 background={"#243247"}
                 radius={10}

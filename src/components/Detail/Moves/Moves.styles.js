@@ -53,5 +53,17 @@ display:flex;
 flex-wrap: wrap;
 justify-content:center;
 `;
-
-export {Tile, CardMovesContainer, MovesTileContainer, MovesButton};
+const ListItemMoves = styledComponents.li`
+display:flex;
+  color: #f947e891;
+  text-align: center;
+  padding:0 1.17rem;
+  
+`;
+export {
+  ListItemMoves,
+  Tile,
+  CardMovesContainer,
+  MovesTileContainer,
+  MovesButton,
+};

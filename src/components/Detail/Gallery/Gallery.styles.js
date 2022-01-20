@@ -12,7 +12,6 @@ const ContainerGallery = styled.div`
   );
   border-radius: 20px;
   box-shadow: 4px 7px 19px rgba(168, 44, 210, 0.56);
-
 `;
 
 const CardGallery = styled.div`
@@ -40,4 +39,10 @@ const Title = styled.h1`
   font-size: 40px;
 `;
 
-export {CardGallery, Title, ContainerGallery};
+const List = styled.h3`
+  color: #f947e891;
+  text-align: center;
+  padding: 2rem;
+`;
+
+export {CardGallery, Title, ContainerGallery}; //nie robić default

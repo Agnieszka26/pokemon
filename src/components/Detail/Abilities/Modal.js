@@ -12,13 +12,13 @@ const Modal = ({url}) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      await setAbility(data);
+      setAbility(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (ability.effect_entries !== undefined) {
+  if (!ability.effect_entries.length) {
     setAbility(ability.effect_entries[0].effect);
   }
 

@@ -28,7 +28,7 @@ const DropdownMenuAbility = ({itemsDropdown}) => {
         <img src={arrow} width="8" height="8"  alt="" />
       </Button>
       {isActive &&
-        itemsDropdown.length !== 0 &&
+        itemsDropdown.length &&
         itemsDropdown.map((item, id) => {
           return <ListItem key={id} item={item.ability} />;
         })}

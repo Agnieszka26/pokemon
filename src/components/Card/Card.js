@@ -11,7 +11,7 @@ import {
 const Card = (props) => {
   let navigate = useNavigate();
   const handleClick = () => {
-    navigate(`Detail/${props.id}/${props.name}`);
+    navigate(`/Pokemonlist/Detail/${props.id}/${props.name}`);
   };
 
   return (

@@ -1,11 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {v4 as uuidv4} from "uuid";
-
 import {CardGallery, Title, ContainerGallery} from "./Gallery.styles";
-
-import {useEffect} from "react";
-import {useState} from "react";
 
 const Gallery = () => {
   const [detail, setDetail] = useState({});
@@ -20,7 +16,7 @@ const Gallery = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      await setDetail(data);
+      setDetail(data);
     } catch (error) {
       console.log(error);
     }
@@ -36,14 +32,14 @@ const Gallery = () => {
             .map((item) => {
               if (item !== null) {
                 return (
-                  <CardGallery key={uuidv4()}>
+                  <CardGallery key={item}>
                     <img src={item} />
                   </CardGallery>
                 );
               }
             })
         ) : (
-          <div> prosze czekac </div>
+          <div> Wait a second, please... </div>
         )}
       </ContainerGallery>
     </>

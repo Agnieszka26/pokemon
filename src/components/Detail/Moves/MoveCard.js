@@ -1,13 +1,41 @@
-import React from "react";
-import {Tile, MovesTileContainer} from "./Moves.styles";
+import React, {useState} from "react";
+import {Tile, MovesTileContainer, ListItemMoves} from "./Moves.styles";
+import hamburger from "../../../Assets/line.png";
+import tile from "../../../Assets/tile.png";
 
 const MoveCard = ({move}) => {
+  const [isActive, setIsActive] = useState(false);
+  const [imageButton, setImageButton] = useState(hamburger);
+  const handleActive = () => {
+    setIsActive(() => !isActive);
+    togglingImageButton();
+  };
+
+  const togglingImageButton = () => {
+    if (imageButton === hamburger) {
+      setImageButton(tile);
+    } else {
+      setImageButton(hamburger);
+    }
+  };
+
   return (
     <>
+      <button onClick={handleActive}>
+        <img src={imageButton} width="12" height="12" alt="" />
+      </button>
       <MovesTileContainer>
-        {move !== undefined &&
+        {move.length &&
           move.map((item, id) => {
-            return <Tile key={id}>{item.move.name}</Tile>;
+            if (!isActive) {
+              return <Tile key={id}>{item.move.name}</Tile>;
+            } else {
+              return (
+                <ul style={{display: "flex"}}>
+                  <ListItemMoves key={id}>{item.move.name}</ListItemMoves>
+                </ul>
+              );
+            }
           })}
       </MovesTileContainer>
     </>

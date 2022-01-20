@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import CardList from "../CardList.js/CardList";
+import {CardList} from "../CardList.js/CardList";
 import {HomeStyle, Input, InputNumber} from "./Home.style";
 import Loading from "../Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
   const [validationWarning, setValidateWarning] = useState("");
@@ -11,15 +12,15 @@ const Home = () => {
   const [thereArePokemons, setThereArePokemons] = useState(false);
   const [load, setLoad] = useState(false);
 
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
+  // const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
 
-  const getAllPokemons = async () => {
-    setLoad(true);
-    const response = await fetch(url);
-    const data = await response.json();
-    setPokemons(data.results);
-    setLoad(false);
-  };
+  // const getAllPokemons = async () => {
+  //   setLoad(true);
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+  //   setPokemons(data.results);
+  //   setLoad(false);
+  // };
 
   const validationStyles = {
     validationText: {
@@ -38,13 +39,14 @@ const Home = () => {
         backgroundColor: "#ff206391",
       });
     } else if (number > 1118) {
-      setValidateWarning("the number must be lower than 1118");
-      setValidationStyle({
-        outline: `2px solid red`,
-        backgroundColor: "#ff206391",
-      });
+      setValidateWarning(
+        `You entered number ${number}, the maximum number is 1118, the list of Pokémon 1118 has been downloaded`
+      );
+      setNumber(1118);
+      // getAllPokemons();
+      setThereArePokemons(true);
     } else {
-      getAllPokemons();
+      //  getAllPokemons();
       setThereArePokemons(true);
     }
   };
@@ -55,6 +57,16 @@ const Home = () => {
     }
   };
 
+  const handleChange = (e) => {
+    setNumber(e.target.value);
+    setValidateWarning("");
+    setValidationStyle({outline: `none`});
+  };
+
+  let navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/${number}/Pokemonlist`);
+  };
   return (
     <>
       {!thereArePokemons && (
@@ -67,11 +79,7 @@ const Home = () => {
                 type="number"
                 placeholder="set numbers of pokemons"
                 value={undefined}
-                onChange={(e) => (
-                  setNumber(e.target.value),
-                  setValidateWarning(""),
-                  setValidationStyle({outline: `none`})
-                )}
+                onChange={handleChange}
                 onKeyPress={handleEnter}
               />
             </label>
@@ -79,14 +87,21 @@ const Home = () => {
               {validationWarning}
             </div>
             <Input
-              type="button"
-              onClick={handleSubmit}
+              type="button" //sprawdzic submit
+              onClick={handleClick}
               value="Load pokemons!"
             ></Input>
           </form>
         </HomeStyle>
       )}
-      {thereArePokemons && <CardList pokemonData={pokemons} />}
+      {/* {thereArePokemons && (
+        <div>
+          <h6 style={{color: "rgba(249, 71, 232, 0.57)", margin: "2rem"}}>
+            {validationWarning}
+          </h6>
+          <CardList pokemonData={pokemons} />
+        </div>
+      )} */}
       {load && <Loading />}
     </>
   );
