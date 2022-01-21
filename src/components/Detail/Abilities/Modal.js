@@ -18,7 +18,7 @@ const Modal = ({url}) => {
     }
   };
 
-  if (!ability.effect_entries.length) {
+  if (ability.effect_entries) {
     setAbility(ability.effect_entries[0].effect);
   }
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const CardDetail = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 2rem;
+  padding: 0.5rem;
   margin: 0.5rem auto;
   background: linear-gradient(
     180.2deg,
@@ -51,7 +51,7 @@ const Bigtext = styled.h3`
 `;
 const Flex = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: space-around;
   align-items: start;
 `;
 

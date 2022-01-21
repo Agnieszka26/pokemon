@@ -12,16 +12,17 @@ const CardList = () => {
   const [pokemons, setPokemons] = useState([]);
   const [load, setLoad] = useState(false);
   const [searching, IsSearching] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
 
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
-
-  const getAllPokemons = async () => {
-    setLoad(true);
-    const response = await fetch(url);
-    const data = await response.json();
-    setPokemonData(data.results);
-    setLoad(false);
-  };
+  useEffect(() => {
+    const results = pokemons.filter(
+      (pokemon) => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+      //pokemon.name.toLowerCase().includes(searchTerm)
+    );
+    setFilteredPokemon(results);
+    console.log(results);
+  }, [searchTerm]);
 
   useEffect(() => {
     getAllPokemons();
@@ -34,6 +35,16 @@ const CardList = () => {
   useEffect(() => {
     getingDataOnePokemon();
   }, [pokemonUrl]);
+
+  const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
+
+  const getAllPokemons = async () => {
+    setLoad(true);
+    const response = await fetch(url);
+    const data = await response.json();
+    setPokemonData(data.results);
+    setLoad(false);
+  };
 
   const createPokemonUrl = () => {
     pokemonData.forEach((element) => {
@@ -54,46 +65,61 @@ const CardList = () => {
   };
 
   const handleChangeSearch = (event) => {
-    IsSearching(false);
-    setSearchTerm(event.target.value);
-    IsSearching(true);
+    if (event.target.value === "") {
+      setSearchTerm(event.target.value);
+      console.log(`nie szukam `);
+      //  IsSearching(false);
+    } else {
+      //setSearchTerm(event.target.value);
+      setSearchTerm(event.target.value);
+      // console.log(`szukam ${searchTerm}`);
+
+      IsSearching(true);
+    }
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredPokemon, setFilteredPokemon] = useState([]);
-  useEffect(() => {
-    setFilteredPokemon(
-      pokemons.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchTerm)
-      )
-    );
-  }, []);
-
+  // console.log(`${filteredPokemon}`);
   return (
     <>
-      {number > 1118 && (
-        <h1
-          style={{color: "#f947e8"}}
-        >{`You have entered the number ${number}, the maximum number is 1118, the list of Pokémon 1118 has been downloaded`}</h1>
-      )}
-      <SearchBar
-        handleChangeSearch={handleChangeSearch}
-        value={searchTerm}
-        type="text"
-        placeholder="Search"
-      />
+      <div
+        styles={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {number > 1118 && (
+          <h1
+            style={{color: "#f947e8"}}
+          >{`You have entered the number ${number}, the maximum number is 1118, the list of Pokémon 1118 has been downloaded`}</h1>
+        )}
+        <SearchBar
+          handleChangeSearch={handleChangeSearch}
+          value={searchTerm}
+          type="text"
+          placeholder="Search"
+        />
 
-      {pokemons.length && !searching && (
-        <CardListBody>
-          {pokemons
-            .sort((a, b) => a.id - b.id)
-            .map((detail) => (
-              <Card pokemon={detail} />
-            ))}
-        </CardListBody>
-      )}
+        {!searching && (
+          <CardListBody>
+            {pokemons
+              .sort((a, b) => a.id - b.id)
+              .map((detail) => (
+                <Card pokemon={detail} />
+              ))}
+          </CardListBody>
+        )}
+        {searching && (
+          <CardListBody>
+            {filteredPokemon
+              .sort((a, b) => a.id - b.id)
+              .map((detail) => (
+                <Card pokemon={detail} />
+              ))}
+          </CardListBody>
+        )}
 
-      {filteredPokemon.length ? (
+        {/* {filteredPokemon.length ? (
         <CardListBody>
           {filteredPokemon
             .sort((a, b) => a.id - b.id)
@@ -102,9 +128,9 @@ const CardList = () => {
             ))}
         </CardListBody>
       ) : (
-        <div>no such a pokemon </div>
-      )}
-
+        <div> no no no </div>
+      )} */}
+      </div>
       {load && <Loading />}
     </>
   );

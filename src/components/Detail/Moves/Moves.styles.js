@@ -19,6 +19,9 @@ color: #4e255e;
 
 const CardMovesContainer = styledComponents.div`
 width: 100%;
+// display:flex;
+// flex-basis: 100%;
+
 `;
 
 const MovesButton = styledComponents.button`
