@@ -8,20 +8,20 @@ import {
   Tables,
 } from "./Card.styles";
 
-const Card = (props) => {
+const Card = ({pokemon}) => {
   let navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/Pokemonlist/Detail/${props.id}/${props.name}`);
+    navigate(`/Pokemonlist/Detail/${pokemon.id}/${pokemon.name}`);
   };
-
+//console.log(pokemon)
   return (
     <CardPokemon onClick={handleClick}>
       <ImagePokemon>
-        <img src={props.image} alt="img" />
+        <img src={pokemon.sprites.front_default} alt="img" />
       </ImagePokemon>
-      <NameTitle>{props.name}</NameTitle>
+      <NameTitle>{pokemon.name}</NameTitle>
       <Tables>name</Tables>
-      <TypeTitle> {props.baseType} </TypeTitle>
+      <TypeTitle> {pokemon.types[0].type.name} </TypeTitle>
       <Tables>type</Tables>
     </CardPokemon>
   );

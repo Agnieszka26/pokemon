@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import Card from "../Card/Card";
 import {CardListBody} from "./CardList.styles";
 import {useParams} from "react-router-dom";
+import Loading from "../Loading/Loading";
+import {SearchBar} from "./SearchBar/SearchBar";
 
 const CardList = () => {
   const {number} = useParams();
@@ -9,18 +11,18 @@ const CardList = () => {
   const [pokemonData, setPokemonData] = useState([]);
   const [pokemons, setPokemons] = useState([]);
   const [load, setLoad] = useState(false);
-  // const [thereArePokemons, setThereArePokemons] = useState(false);
-  // const [load, setLoad] = useState(false);
+  const [searching, IsSearching] = useState(false);
 
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
 
   const getAllPokemons = async () => {
-    //setLoad(true);
+    setLoad(true);
     const response = await fetch(url);
     const data = await response.json();
     setPokemonData(data.results);
-    //setLoad(false);
+    setLoad(false);
   };
+
   useEffect(() => {
     getAllPokemons();
   }, []);
@@ -51,38 +53,59 @@ const CardList = () => {
     });
   };
 
-  // for(let i = 0; i>=pokemons.length; i++){
-  //    const {
-  //   id,
-  //   // sprites: {front_shiny},
-  //   types,
-  // } = pokemons;
-  // console.log(id)
-  // }
-  // // const {
-  // //   id,
-  // //   sprites: {front_shiny},
-  // //   types,
-  // // } = detail;
+  const handleChangeSearch = (event) => {
+    IsSearching(false);
+    setSearchTerm(event.target.value);
+    IsSearching(true);
+  };
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
+  useEffect(() => {
+    setFilteredPokemon(
+      pokemons.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(searchTerm)
+      )
+    );
+  }, []);
 
   return (
     <>
-      <CardListBody>
-        {pokemons.length &&
-          pokemons
+      {number > 1118 && (
+        <h1
+          style={{color: "#f947e8"}}
+        >{`You have entered the number ${number}, the maximum number is 1118, the list of Pokémon 1118 has been downloaded`}</h1>
+      )}
+      <SearchBar
+        handleChangeSearch={handleChangeSearch}
+        value={searchTerm}
+        type="text"
+        placeholder="Search"
+      />
+
+      {pokemons.length && !searching && (
+        <CardListBody>
+          {pokemons
             .sort((a, b) => a.id - b.id)
             .map((detail) => (
-              <Card
-                url={pokemonUrl}
-                id={detail.id}
-                pokemonDetails={pokemons}
-                image={detail.sprites.front_shiny}
-                key={detail.id}
-                name={detail.name}
-                baseType={detail.types[0].type.name} //wyciągnąć destrukturyzacja
-              />
+              <Card pokemon={detail} />
             ))}
-      </CardListBody>
+        </CardListBody>
+      )}
+
+      {filteredPokemon.length ? (
+        <CardListBody>
+          {filteredPokemon
+            .sort((a, b) => a.id - b.id)
+            .map((detail) => (
+              <Card pokemon={detail} />
+            ))}
+        </CardListBody>
+      ) : (
+        <div>no such a pokemon </div>
+      )}
+
+      {load && <Loading />}
     </>
   );
 };
