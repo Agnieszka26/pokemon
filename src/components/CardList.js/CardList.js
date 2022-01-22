@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from "react";
-import Card from "../Card/Card";
-import {CardListBody} from "./CardList.styles";
-import {useParams} from "react-router-dom";
-import Loading from "../Loading/Loading";
-import {SearchBar} from "./SearchBar/SearchBar";
+import React, { useState, useEffect } from "react";
+import { Card } from "../Card/Card";
+import { CardListBody } from "./CardList.styles";
+import { useParams } from "react-router-dom";
+import { Loader } from "../Loader/Loader";
+import { SearchBar } from "./SearchBar/SearchBar";
 
 const CardList = () => {
-  const {number} = useParams();
+  const { number } = useParams();
   const [pokemonUrl, setPokemonUrl] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
   const [pokemons, setPokemons] = useState([]);
-  const [load, setLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [searching, IsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
@@ -33,17 +33,23 @@ const CardList = () => {
   }, [pokemonData]);
 
   useEffect(() => {
-    getingDataOnePokemon();
+    getSinglePokemonData();
   }, [pokemonUrl]);
 
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
 
   const getAllPokemons = async () => {
-    setLoad(true);
-    const response = await fetch(url);
-    const data = await response.json();
-    setPokemonData(data.results);
-    setLoad(false);
+    // added try catch and renamed load to loading, to be more descriptive
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setPokemonData(data.results);
+    } catch (error) {
+      console.log("error getting all pokemons data", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const createPokemonUrl = () => {
@@ -52,7 +58,8 @@ const CardList = () => {
     });
   };
 
-  const getingDataOnePokemon = () => {
+  const getSinglePokemonData = () => {
+    // more descriptive name of that function :)
     pokemonUrl.forEach(async (url) => {
       try {
         const res = await fetch(url);
@@ -90,7 +97,7 @@ const CardList = () => {
       >
         {number > 1118 && (
           <h1
-            style={{color: "#f947e8"}}
+            style={{ color: "#f947e8" }}
           >{`You have entered the number ${number}, the maximum number is 1118, the list of Pokémon 1118 has been downloaded`}</h1>
         )}
         <SearchBar
@@ -131,9 +138,9 @@ const CardList = () => {
         <div> no no no </div>
       )} */}
       </div>
-      {load && <Loading />}
+      {loading && <Loader />}
     </>
   );
 };
 
-export {CardList};
+export { CardList };

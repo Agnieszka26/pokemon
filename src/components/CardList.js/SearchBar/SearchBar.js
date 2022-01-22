@@ -1,15 +1,16 @@
 import React from "react";
-import {SearchBox} from "./SearchBar.styles";
+import { SearchBox } from "./SearchBar.styles";
 
-const SearchBar = (props) => {
+const SearchBar = ({ searchTerm, handleChangeSearch, placeholder }) => {
+  //added destructuring here
   return (
     <div>
       <SearchBox
-        value={props.searchTerm}
-        onChange={props.handleChangeSearch}
-        placeholder={props.placeholder}
+        value={searchTerm}
+        onChange={handleChangeSearch}
+        placeholder={placeholder}
       />
     </div>
   );
 };
-export {SearchBar};
+export { SearchBar };

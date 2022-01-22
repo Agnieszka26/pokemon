@@ -1,5 +1,5 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   TypeTitle,
   NameTitle,
@@ -8,23 +8,22 @@ import {
   Tables,
 } from "./Card.styles";
 
-const Card = ({pokemon}) => {
-  let navigate = useNavigate();
+export const Card = ({ pokemon }) => {
+  const navigate = useNavigate(); // what is the point in declaring this variable as let? do you predict to change it in the future?
   const handleClick = () => {
     navigate(`/Pokemonlist/Detail/${pokemon.id}/${pokemon.name}`);
   };
-//console.log(pokemon)
+  //console.log(pokemon)
+  const { sprites, name, types } = pokemon; // added destructuring
   return (
     <CardPokemon onClick={handleClick}>
       <ImagePokemon>
-        <img src={pokemon.sprites.front_default} alt="img" />
+        <img src={sprites.front_default} alt="pokemon-img" />
       </ImagePokemon>
-      <NameTitle>{pokemon.name}</NameTitle>
+      <NameTitle>{name}</NameTitle>
       <Tables>name</Tables>
-      <TypeTitle> {pokemon.types[0].type.name} </TypeTitle>
+      <TypeTitle> {types[0].type.name} </TypeTitle>
       <Tables>type</Tables>
     </CardPokemon>
   );
 };
-
-export default Card;
