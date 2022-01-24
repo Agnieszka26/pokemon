@@ -7,6 +7,7 @@ height:100%;
 background-color: #24324780;
 top:0;
 left:0;
+z-index:9;
 `;
 
 const ModalContainer = styledComponents.div`
@@ -17,6 +18,7 @@ width:60vw;
 transform: translate(-50%,-50%);
 background-color:#bbc3cf;
 border-radius:15px;
+z-index:10;
 `;
 
 const ModalText = styledComponents.p`

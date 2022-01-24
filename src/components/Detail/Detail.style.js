@@ -63,6 +63,7 @@ const ButtonTooltip = styled.button`
   border-radius: 50%;
   color: #243247;
   font-size: 12px;
+  z-index: -1;
 
   &:hover {
     color: white;
