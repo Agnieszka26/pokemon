@@ -1,77 +1,99 @@
-import React, {useState} from "react";
-import {HomeStyle, Input, InputNumber} from "./Home.style";
-import {useNavigate} from "react-router-dom";
+// import React, {useState, useEffect, useContext, createContext} from "react";
+// import {HomeStyle, Input, InputNumber} from "./Home.style";
+// import {useNavigate} from "react-router-dom";
+// import GlobalDataPokemonContextProvider from "../Context/ContextHome";
 
-const Home = () => {
-  const [validationWarning, setValidateWarning] = useState("");
-  const [validationStyle, setValidationStyle] = useState({outline: `none`});
-  const [number, setNumber] = useState(null);
+// const Home = () => {
+//   const [validationFailed, setValidationFailed] = useState("");
+//   const [numberOfPokemonsToFetch, setNumberOfPokemonsToFetch] = useState(null);
+//   // const { unicornTypes, setUnicornTypes } = useContext(ReferenceDataContext);
+//   const [loading, setLoading] = useState(false);
+//   const [pokemonData, setPokemonData] = useContext(
+//     GlobalDataPokemonContextProvider
+//   );
 
-  const validationStyles = {
-    validationText: {
-      color: "red",
-      fontSize: "10px",
-      margin: 0,
-      padding: 0,
-    },
-  };
-  let navigate = useNavigate();
-  const handleSubmit = () => {
-    if (number < 0) {
-      setValidateWarning("the number must be higher than 0");
-      setValidationStyle({
-        outline: `2px solid red`,
-        backgroundColor: "#ff206391",
-      });
-    } else if (number > 1118) {
-      setNumber(1118);
-      navigate(`/${number}/Pokemonlist`);
-    } else {
-      navigate(`/${number}/Pokemonlist`);
-    }
-  };
+//   const validationStyles = {
+//     validationText: {
+//       padding: 0,
+//     },
+//   };
 
-  const handleEnter = (e) => {
-    if (e.which === 13) {
-      handleSubmit();
-    }
-  };
+//   useEffect(() => {
+//     getAllPokemons();
+//   }, []);
 
-  const handleChange = (e) => {
-    setNumber(e.target.value);
-    setValidateWarning("");
-    setValidationStyle({outline: `none`});
-  };
+//   //const navigate = useNavigate();
+//   const handleSubmit = () => {
+//     if (numberOfPokemonsToFetch <= 0) {
+//       setValidationFailed(true);
+//     } else if (numberOfPokemonsToFetch > 1118) {
+//       setNumberOfPokemonsToFetch(1118);
+//       // navigate(`/${numberOfPokemonsToFetch}/Pokemonlist`);
+//     } else {
+//       //setNumberOfPokemonsToFetch(1118);
+//       // navigate(`/${numberOfPokemonsToFetch}/Pokemonlist`);
+//     }
+//   };
 
-  return (
-    <>
-      {
-        <HomeStyle>
-          <form>
-            <label>
-              How many pokemons do you want to see?
-              <InputNumber
-                style={validationStyle}
-                type="number"
-                placeholder="set numbers of pokemons"
-                value={undefined}
-                onChange={handleChange}
-                onKeyPress={handleEnter}
-              />
-            </label>
-            <div style={validationStyles.validationText}>
-              {validationWarning}
-            </div>
-            <Input
-              type="button" //sprawdzic submit
-              onClick={handleSubmit}
-              value="Load pokemons!"
-            ></Input>
-          </form>
-        </HomeStyle>
-      }
-    </>
-  );
-};
+//   const handleEnterPress = (e) => {
+//     if (e.which === 13) {
+//       handleSubmit();
+//     }
+//   };
 
-export default Home;
+//   const handleChange = (e) => {
+//     setNumberOfPokemonsToFetch(e.target.value);
+//     validationFailed && setValidationFailed(false);
+//   };
+
+//   //----------------------------------------
+
+//   const url = `https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemonsToFetch}`;
+
+//   const getAllPokemons = async () => {
+//     setLoading(true);
+//     try {
+//       const response = await fetch(url);
+//       const data = await response.json();
+//       setPokemonData(data.results);
+//     } catch (error) {
+//       console.log("error getting all pokemons data", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <>
+//       {
+//         <HomeStyle>
+//           <form>
+//             {/* <label>
+//               How many pokemons do you want to see?
+//               <InputNumber
+//                 validationFailed={validationFailed}
+//                 type="number"
+//                 placeholder="set numbers of pokemons"
+//                 value={undefined}
+//                 onChange={handleChange}
+//                 onKeyPress={handleEnterPress}
+//               />
+//             </label>
+//             {validationFailed && (
+//               <div style={validationStyles.validationText}>
+//                 the number must be higher than 0
+//               </div>
+//             )}
+//             <Input
+//               type="button" //sprawdzic submit
+//               onClick={handleSubmit}
+//               value="Load pokemons!"
+//             ></Input> */}
+//           </form>
+//         </HomeStyle>
+//       }
+//     </>
+//   );
+// };
+
+// export default Home;

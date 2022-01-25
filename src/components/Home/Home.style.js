@@ -19,8 +19,7 @@ const HomeStyle = styled.div`
   box-shadow: 4px 7px 19px rgba(168, 44, 210, 0.56);
   line-height: 2rem;
   text-align: center;
- 
-`;
+ `;
 
 const Input = styled.input`
   padding: 1rem;
@@ -45,8 +44,12 @@ const InputNumber = styled.input`
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background:: ${({bgError}) => (bgError ? "red" : "white")};
-
+  background:: ${({ bgError }) => (bgError ? "red" : "white")};
+  ${({ validationFailed }) =>
+    validationFailed &&
+    `outline: 2px solid red;
+  background-color: #ff206391;
+`}
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -67,6 +70,8 @@ const InputNumber = styled.input`
   &:hover {
     cursor: pointer;
     color: #5193f6;
+
+    
   }
 `;
-export {HomeStyle, Input, InputNumber};
+export { HomeStyle, Input, InputNumber };

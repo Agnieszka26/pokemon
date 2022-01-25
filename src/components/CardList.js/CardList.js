@@ -1,84 +1,84 @@
-import React, {useState, useEffect} from "react";
-import Card from "../Card/Card";
+import React, {useState, useEffect, useContext} from "react";
+import {Card} from "../Card/Card";
 import {CardListBody} from "./CardList.styles";
 import {useParams} from "react-router-dom";
-import Loading from "../Loading/Loading";
+import {Loader} from "../Loader/Loader";
 import {SearchBar} from "./SearchBar/SearchBar";
+import {CardProvider, CardContext} from "../Card/CardContextProvider";
+import {
+  ContextCardList,
+  ContextCardListProvider,
+} from "./ContextCardListProvider";
+import {HomeContext, HomeContextProvider} from "../Context/HomeContextProvider";
 
 const CardList = () => {
-  const {number} = useParams();
-  const [pokemonUrl, setPokemonUrl] = useState([]);
-  const [pokemonData, setPokemonData] = useState([]);
-  const [pokemons, setPokemons] = useState([]);
-  const [load, setLoad] = useState(false);
-  const [searching, IsSearching] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredPokemon, setFilteredPokemon] = useState([]);
+  const context = useContext(ContextCardList);
+  const contextHome = useContext(HomeContext);
+  const contextCard = useContext(CardContext);
+  // console.log(context);
+  // console.log(contextHome.pokemonsData);
 
   useEffect(() => {
-    const results = pokemons.filter(
-      (pokemon) => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-      //pokemon.name.toLowerCase().includes(searchTerm)
+    const results = context.pokemons.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(context.searchTerm.toLowerCase())
     );
-    setFilteredPokemon(results);
-    console.log(results);
-  }, [searchTerm]);
+    context.setFilteredPokemon(results);
+  }, [context.searchTerm]);
 
   useEffect(() => {
-    getAllPokemons();
-  }, []);
+    getingSinglePokemonData();
+  }, [contextHome.pokemonsData]);
 
-  useEffect(() => {
-    createPokemonUrl();
-  }, [pokemonData]);
-
-  useEffect(() => {
-    getingDataOnePokemon();
-  }, [pokemonUrl]);
-
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=${number}`;
-
-  const getAllPokemons = async () => {
-    setLoad(true);
-    const response = await fetch(url);
-    const data = await response.json();
-    setPokemonData(data.results);
-    setLoad(false);
-  };
-
-  const createPokemonUrl = () => {
-    pokemonData.forEach((element) => {
-      setPokemonUrl((arrOfUrl) => [...arrOfUrl, element.url]);
-    });
-  };
-
-  const getingDataOnePokemon = () => {
-    pokemonUrl.forEach(async (url) => {
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        setPokemons((objOfPokemons) => [...objOfPokemons, data]);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  };
-
-  const handleChangeSearch = (event) => {
-    if (event.target.value === "") {
-      setSearchTerm(event.target.value);
-      console.log(`nie szukam `);
-      //  IsSearching(false);
-    } else {
-      //setSearchTerm(event.target.value);
-      setSearchTerm(event.target.value);
-      // console.log(`szukam ${searchTerm}`);
-
-      IsSearching(true);
+  //------------------------------
+  const getingSinglePokemonData = () => {
+    if (contextHome.pokemonsData) {
+      //console.log(contextHome.pokemonsData.url);
+      contextHome.pokemonsData.forEach(async (pokemon) => {
+        try {
+          const res = await fetch(pokemon.url);
+          const data = await res.json();
+          context.setPokemons((objOfPokemons) => [...objOfPokemons, data]);
+        } catch (error) {
+          console.log(error);
+        }
+      });
     }
   };
 
-  // console.log(`${filteredPokemon}`);
+  //----------------------------------
+  //setting Detail of pokemon
+
+  const settingDetailsPokemon = (de) => {
+    context.pokemons
+      .sort((a, b) => a.id - b.id)
+      .map((detail) =>
+        //     //<Card  key = {detail.id} />
+        contextCard.setDetail(detail)
+        //     // <Card  key = {detail.id}  pokemon = {detail}/>
+      );
+  };
+  // (context.pokemons)? context.pokemons
+  //   .sort((a, b) => a.id - b.id)
+  //   .map((detail) => (
+  //     //<Card  key = {detail.id} />
+  //     contextCard.setDetail(detail)
+  //     // <Card  key = {detail.id}  pokemon = {detail}/>
+  //   ))
+
+  //-----------------------------------
+
+  //getingSinglePokemonData();
+  const handleChangeSearch = (event) => {
+    if (event.target.value === "") {
+      context.setSearchTerm(event.target.value);
+      console.log(`nie szukam `);
+    } else {
+      context.setSearchTerm(event.target.value);
+      context.IsSearching(true);
+    }
+  };
+
+  //console.log(context);
   return (
     <>
       <div
@@ -88,50 +88,36 @@ const CardList = () => {
           justifyContent: "center",
         }}
       >
-        {number > 1118 && (
+        {/*
+        Jestem czołgiem i na razie zmieniam
+         {number > 1118 && (
           <h1
-            style={{color: "#f947e8"}}
+            style={{ color: "#f947e8" }}
           >{`You have entered the number ${number}, the maximum number is 1118, the list of Pokémon 1118 has been downloaded`}</h1>
-        )}
+        )} */}
         <SearchBar
           handleChangeSearch={handleChangeSearch}
-          value={searchTerm}
+          value={context.searchTerm}
           type="text"
           placeholder="Search"
         />
 
-        {!searching && (
+        {!context.searching && (
           <CardListBody>
-            {pokemons
+            <Card />
+          </CardListBody>
+        )}
+        {context.searching && (
+          <CardListBody>
+            {context.filteredPokemon
               .sort((a, b) => a.id - b.id)
               .map((detail) => (
                 <Card pokemon={detail} />
               ))}
           </CardListBody>
         )}
-        {searching && (
-          <CardListBody>
-            {filteredPokemon
-              .sort((a, b) => a.id - b.id)
-              .map((detail) => (
-                <Card pokemon={detail} />
-              ))}
-          </CardListBody>
-        )}
-
-        {/* {filteredPokemon.length ? (
-        <CardListBody>
-          {filteredPokemon
-            .sort((a, b) => a.id - b.id)
-            .map((detail) => (
-              <Card pokemon={detail} />
-            ))}
-        </CardListBody>
-      ) : (
-        <div> no no no </div>
-      )} */}
       </div>
-      {load && <Loading />}
+      {context.loading && <Loader />}
     </>
   );
 };
