@@ -21,7 +21,7 @@ const DropdownMenuItems = ({itemsDropdown}) => {
   };
 
   return (
-    <div>
+    <>
       <Button onClick={clickHandler}>
         <span style={{margin: "0.1rem"}}>Held Items</span>
         <img src={arrow} width="8" height="8" alt="" />
@@ -34,7 +34,7 @@ const DropdownMenuItems = ({itemsDropdown}) => {
         ) : (
           <p>No held Items</p>
         ))}
-    </div>
+    </>
   );
 };
 

@@ -1,10 +1,7 @@
 import React, {useContext} from "react";
 import {useNavigate} from "react-router-dom";
-import {CardProvider, CardContext} from "./CardContextProvider";
-import {
-  ContextCardList,
-  ContextCardListProvider,
-} from "../CardList.js/ContextCardListProvider";
+
+import {ContextList} from "../Context/ContextProvider";
 import {
   TypeTitle,
   NameTitle,
@@ -14,24 +11,24 @@ import {
 } from "./Card.styles";
 
 const Card = ({pokemon}) => {
-  const context = useContext(ContextCardList);
-  const contextCard = useContext(CardContext );
-   console.log(contextCard);
+  const context = useContext(ContextList);
+
   const navigate = useNavigate();
   const handleClick = () => {
+    context.setId(pokemon.id);
     navigate(`/Pokemonlist/Detail/${pokemon.id}/${pokemon.name}`);
   };
- // console.log(pokemon);
-  //const {sprites, name, types} = pokemon;
+
+  const {sprites, name, types} = pokemon;
   return (
     <CardPokemon onClick={handleClick}>
-      {/* <ImagePokemon>
+      <ImagePokemon>
         <img src={sprites.front_default} alt="img" />
       </ImagePokemon>
       <NameTitle>{name}</NameTitle>
       <Tables>name</Tables>
       <TypeTitle> {types[0].type.name} </TypeTitle>
-      <Tables>type</Tables> */}
+      <Tables>type</Tables>
     </CardPokemon>
   );
 };

@@ -1,9 +1,11 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {BackgroundModal, ModalContainer, ModalText} from "./Modals.styles";
+import {ContextList} from "../../Context/ContextProvider";
 
-const Modal = ({url}) => {
+const Modal = () => {
   const [ability, setAbility] = useState([]);
-
+ const context = useContext(ContextList);
+ const url = context.pokemon.abilities.ability.url
   useEffect(() => {
     getAbilites();
   }, []);

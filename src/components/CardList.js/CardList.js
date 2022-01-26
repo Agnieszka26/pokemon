@@ -1,22 +1,17 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useEffect, useContext} from "react";
 import {Card} from "../Card/Card";
 import {CardListBody} from "./CardList.styles";
-import {useParams} from "react-router-dom";
 import {Loader} from "../Loader/Loader";
 import {SearchBar} from "./SearchBar/SearchBar";
-import {CardProvider, CardContext} from "../Card/CardContextProvider";
-import {
-  ContextCardList,
-  ContextCardListProvider,
-} from "./ContextCardListProvider";
-import {HomeContext, HomeContextProvider} from "../Context/HomeContextProvider";
+import {ContextList} from "../Context/ContextProvider";
+import {maxNuberOfPokemonsToFetch} from "../../Assets/constants";
 
 const CardList = () => {
-  const context = useContext(ContextCardList);
-  const contextHome = useContext(HomeContext);
-  const contextCard = useContext(CardContext);
-  // console.log(context);
-  // console.log(contextHome.pokemonsData);
+  const context = useContext(ContextList);
+
+  useEffect(() => {
+    getingSinglePokemonData();
+  }, [context.pokemonsData]);
 
   useEffect(() => {
     const results = context.pokemons.filter((pokemon) =>
@@ -25,15 +20,9 @@ const CardList = () => {
     context.setFilteredPokemon(results);
   }, [context.searchTerm]);
 
-  useEffect(() => {
-    getingSinglePokemonData();
-  }, [contextHome.pokemonsData]);
-
-  //------------------------------
   const getingSinglePokemonData = () => {
-    if (contextHome.pokemonsData) {
-      //console.log(contextHome.pokemonsData.url);
-      contextHome.pokemonsData.forEach(async (pokemon) => {
+    if (context.pokemonsData) {
+      context.pokemonsData.forEach(async (pokemon) => {
         try {
           const res = await fetch(pokemon.url);
           const data = await res.json();
@@ -45,29 +34,6 @@ const CardList = () => {
     }
   };
 
-  //----------------------------------
-  //setting Detail of pokemon
-
-  const settingDetailsPokemon = (de) => {
-    context.pokemons
-      .sort((a, b) => a.id - b.id)
-      .map((detail) =>
-        //     //<Card  key = {detail.id} />
-        contextCard.setDetail(detail)
-        //     // <Card  key = {detail.id}  pokemon = {detail}/>
-      );
-  };
-  // (context.pokemons)? context.pokemons
-  //   .sort((a, b) => a.id - b.id)
-  //   .map((detail) => (
-  //     //<Card  key = {detail.id} />
-  //     contextCard.setDetail(detail)
-  //     // <Card  key = {detail.id}  pokemon = {detail}/>
-  //   ))
-
-  //-----------------------------------
-
-  //getingSinglePokemonData();
   const handleChangeSearch = (event) => {
     if (event.target.value === "") {
       context.setSearchTerm(event.target.value);
@@ -78,7 +44,6 @@ const CardList = () => {
     }
   };
 
-  //console.log(context);
   return (
     <>
       <div
@@ -88,13 +53,11 @@ const CardList = () => {
           justifyContent: "center",
         }}
       >
-        {/*
-        Jestem czołgiem i na razie zmieniam
-         {number > 1118 && (
+        {context.isHigherNumber > maxNuberOfPokemonsToFetch && (
           <h1
-            style={{ color: "#f947e8" }}
-          >{`You have entered the number ${number}, the maximum number is 1118, the list of Pokémon 1118 has been downloaded`}</h1>
-        )} */}
+            style={{color: "#f947e8"}}
+          >{`You have entered the number ${context.isHigherNumber}, the maximum number is ${maxNuberOfPokemonsToFetch}, the list of Pokémon ${maxNuberOfPokemonsToFetch} has been downloaded`}</h1>
+        )}
         <SearchBar
           handleChangeSearch={handleChangeSearch}
           value={context.searchTerm}
@@ -104,7 +67,11 @@ const CardList = () => {
 
         {!context.searching && (
           <CardListBody>
-            <Card />
+            {context.pokemons
+              .sort((a, b) => a.id - b.id)
+              .map((detail) => (
+                <Card key={detail.id} pokemon={detail} />
+              ))}
           </CardListBody>
         )}
         {context.searching && (

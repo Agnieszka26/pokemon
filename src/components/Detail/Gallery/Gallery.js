@@ -1,46 +1,33 @@
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {v4 as uuidv4} from "uuid";
-import {CardGallery, Title, ContainerGallery} from "./Gallery.styles";
+import React, {useContext, useEffect, useState} from "react";
+
+import {CardGallery, List, Title, ContainerGallery} from "./Gallery.styles";
+import {ContextList} from "../../Context/ContextProvider";
 
 const Gallery = () => {
-  const [detail, setDetail] = useState({});
-  const {userId} = useParams();
-  let url = `https://pokeapi.co/api/v2/pokemon/${userId}`;
-
-  useEffect(() => {
-    getDetail();
-  }, []);
-
-  const getDetail = async () => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setDetail(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const context = useContext(ContextList);
 
   return (
     <>
       <Title>Gallery</Title>
       <ContainerGallery>
-        {detail.sprites !== undefined && detail.sprites !== null ? (
-          Object.values(detail.sprites)
+        {context.pokemon.sprites &&
+          Object.entries(context.pokemon.sprites)
             .slice(0, 8)
-            .map((item) => {
-              if (item !== null) {
+            .map(([key, value]) => {
+              if (value !== null) {
                 return (
-                  <CardGallery key={item}>
-                    <img src={item} />
+                  <CardGallery key={value}>
+                    <img
+                      height="150"
+                      style={{margin: "0 3rem"}}
+                      src={value}
+                      alt="pokemon"
+                    />
+                    <List>{key.split("_").join(" ")}</List>
                   </CardGallery>
                 );
               }
-            })
-        ) : (
-          <div> Wait a second, please... </div>
-        )}
+            })}
       </ContainerGallery>
     </>
   );

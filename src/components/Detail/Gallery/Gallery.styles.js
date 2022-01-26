@@ -3,7 +3,8 @@ import styled from "styled-components";
 const ContainerGallery = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 0.1rem 6rem;
+  justify-content: center;
+  margin: 1rem;
   padding: 2rem;
   background: linear-gradient(
     180.2deg,
@@ -15,8 +16,10 @@ const ContainerGallery = styled.div`
 `;
 
 const CardGallery = styled.div`
-  display: flex;
+ // display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  text-align: justify;
   padding: .4rem;
   margin: 0.8rem;
   background: white;
@@ -40,9 +43,10 @@ const Title = styled.h1`
 `;
 
 const List = styled.h3`
+  text-align: justify;
   color: #f947e891;
   text-align: center;
-  padding: 2rem;
+  padding: 0.1rem;
 `;
 
-export {CardGallery, Title, ContainerGallery}; //nie robić default
+export {CardGallery, List, Title, ContainerGallery}; //nie robić default
