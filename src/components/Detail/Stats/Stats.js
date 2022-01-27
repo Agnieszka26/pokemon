@@ -1,15 +1,20 @@
 import {SmallText, Bigtext} from "../Detail.style";
 import {CardStats, StatsTile} from "./Stats.styles";
+import {ContextList} from "../../Context/ContextProvider";
+import {useContext} from "react";
 
-const Stats = ({stats}) => {
+const Stats = () => {
+  const context = useContext(ContextList);
+
+  const stats = context.pokemon.stats;
   return (
     <>
       <CardStats>
-        {stats.length &&
-          stats.map((item, id) => (
+        {stats &&
+          stats.map((stat, id) => (
             <StatsTile key={id}>
-              <Bigtext> {item.base_stat} </Bigtext>
-              <SmallText>{item.stat.name} </SmallText>
+              <Bigtext> {stat.base_stat} </Bigtext>
+              <SmallText>{stat.stat.name} </SmallText>
             </StatsTile>
           ))}
       </CardStats>

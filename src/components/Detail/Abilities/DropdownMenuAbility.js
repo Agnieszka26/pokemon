@@ -4,34 +4,38 @@ import arrowDown from "../../../Assets/angle-arrow-down.png";
 import arrowUp from "../../../Assets/up-arrow-angle.png";
 import ListItem from "./ListItem";
 import {ContextList} from "../../Context/ContextProvider";
+import Modal from "./Modal";
 
-const DropdownMenuAbility = ({itemsDropdown}) => {
-  const [isActive, setIsActive] = useState(false);
-  const [arrow, setArrow] = useState(arrowDown);
-  const context = useContext(ContextList);
-  const togglingArrows = () => {
-    if (arrow === arrowDown) {
-      setArrow(arrowUp);
-    } else {
-      setArrow(arrowDown);
-    }
+const DropdownMenuAbility = () => {
+  const handleModalClick = () => {
+    context.setIsModalVisible(!context.isModalVisible);
   };
 
-  const clickHandler = () => {
-    setIsActive(!isActive);
+  const context = useContext(ContextList);
+
+  const togglingArrows = () => {
+    if (context.arrow === arrowDown) {
+      context.setArrow(arrowUp);
+    } else {
+      context.setArrow(arrowDown);
+    }
+  };
+  //console.log(context.pokemon.abilities);
+  const clickHandlerArrows = () => {
+    context.setIsActive(!context.isActive);
     togglingArrows();
   };
 
   return (
     <Container>
-      <Button onClick={clickHandler}>
+      <Button onClick={clickHandlerArrows}>
         <span style={{margin: "0.25rem"}}> Abilites </span>
-        <img src={arrow} width="8" height="8" alt="" />
+        <img src={context.arrow} width="8" height="8" alt="" />
       </Button>
-      {isActive &&
+      {context.isActive &&
         context.pokemon.abilities &&
-        context.pokemon.abilities.map((id) => {
-          return <ListItem key={id} />;
+        context.pokemon.abilities.map((item) => {
+          return <ListItem key={item.ability.url} item={[(item.ability.name), (item.ability.url)]} />;
         })}
     </Container>
   );

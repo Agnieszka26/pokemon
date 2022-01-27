@@ -1,4 +1,6 @@
 import {createContext, useState, useEffect} from "react";
+import arrowDown from "../../Assets/angle-arrow-down.png";
+//import arrowUp from "../../../Assets/up-arrow-angle.png";
 
 export const ContextList = createContext();
 
@@ -16,11 +18,20 @@ export const ContextProvider = ({children}) => {
   const [numberOfPokemonsToFetch, setNumberOfPokemonsToFetch] = useState(null);
   const [isHigherNumber, setIsHigherNumber] = useState(0);
   const [titleImagesDetail, setTitleImagesDetail] = useState([]);
-  const [imageUrlsDetail, setImageUrlsDetail ] = useState([]);
+  const [imageUrlsDetail, setImageUrlsDetail] = useState([]);
+  const [isActive, setIsActive] = useState(false);
+  const [arrow, setArrow] = useState(arrowDown);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [abilityURL, setAbilityURL] = useState([]);
+  const [abilityGer, setAbilityGer] = useState([]);
 
   const values = {
-    // pokemonUrl,
-    // setPokemonUrl,
+    isActive,
+    setIsActive,
+    isModalVisible,
+    setIsModalVisible,
+    arrow,
+    setArrow,
     searching,
     IsSearching,
     searchTerm,
@@ -45,7 +56,12 @@ export const ContextProvider = ({children}) => {
     setIsHigherNumber,
     titleImagesDetail,
     setTitleImagesDetail,
-    imageUrlsDetail, setImageUrlsDetail
+    imageUrlsDetail,
+    setImageUrlsDetail,
+    abilityURL,
+    setAbilityURL,
+    abilityGer,
+    setAbilityGer,
   };
 
   return <ContextList.Provider value={values}>{children}</ContextList.Provider>;

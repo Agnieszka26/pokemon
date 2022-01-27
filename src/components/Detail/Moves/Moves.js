@@ -1,15 +1,16 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
 import MoveCard from "./MoveCard";
 import {MovesButton, CardMovesContainer} from "./Moves.styles";
-import hamburger from "../../../Assets/line.png";
-import tile from "../../../Assets/tile.png";
 
-const Moves = ({moves}) => {
+import {ContextList} from "../../Context/ContextProvider";
+
+const Moves = () => {
   const [isActive, setIsActive] = useState(false);
+  const context = useContext(ContextList);
 
+  const moves = context.pokemon.moves;
   const handleClick = () => {
     setIsActive(() => !isActive);
-
   };
 
   const arr = moves.slice(0, 4);

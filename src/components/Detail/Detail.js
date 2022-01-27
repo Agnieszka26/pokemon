@@ -39,7 +39,7 @@ const Detail = () => {
       <>
         <CardDetail>
           <CardSmall>
-            <DropdownMenuAbility itemsDropdown={context.pokemon.abilities} />
+            <DropdownMenuAbility />
           </CardSmall>
 
           <CardSmall>
@@ -57,11 +57,11 @@ const Detail = () => {
             <SmallText>weight</SmallText>
           </CardSmall>
           <CardSmall>
-            <DropdownMenuItems itemsDropdown={context.pokemon.held_items} />
+            <DropdownMenuItems />
           </CardSmall>
           <CardSmall>
             <Flex>
-              <Moves moves={context.pokemon.moves} />
+              <Moves />
               <Tooltip
                 background={"#243247"}
                 radius={10}
@@ -95,7 +95,7 @@ const Detail = () => {
               </Tooltip>
             </Flex>
 
-            <Stats style={{display: "flex"}} stats={context.pokemon.stats} />
+            <Stats style={{display: "flex"}} />
           </CardSmall>
           <CardSmall>
             <Flex>
