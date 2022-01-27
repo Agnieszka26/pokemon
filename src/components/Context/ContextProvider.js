@@ -1,11 +1,11 @@
-import {createContext, useState, useEffect} from "react";
+import {createContext, useState} from "react";
 import arrowDown from "../../Assets/angle-arrow-down.png";
-//import arrowUp from "../../../Assets/up-arrow-angle.png";
+
 
 export const ContextList = createContext();
 
 export const ContextProvider = ({children}) => {
-  // const [pokemonUrl, setPokemonUrl] = useState([]);
+
   const [searching, IsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);

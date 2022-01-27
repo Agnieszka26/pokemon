@@ -10,7 +10,7 @@ const CardList = () => {
   const context = useContext(ContextList);
 
   useEffect(() => {
-    getingSinglePokemonData();
+    getingSinglePokemonData(); //nazwa "get"
   }, [context.pokemonsData]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const CardList = () => {
           placeholder="Search"
         />
 
-        {!context.searching && (
+        {!context.searching && ( //mozna inaczej ?
           <CardListBody>
             {context.pokemons
               .sort((a, b) => a.id - b.id)
@@ -79,13 +79,13 @@ const CardList = () => {
             {context.filteredPokemon
               .sort((a, b) => a.id - b.id)
               .map((detail) => (
-                <Card pokemon={detail} />
+                <Card key={detail.id} pokemon={detail} />
               ))}
           </CardListBody>
         )}
       </div>
       {context.loading && <Loader />}
-    </>
+    </> 
   );
 };
 

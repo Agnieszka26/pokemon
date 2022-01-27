@@ -11,10 +11,10 @@ const DropdownMenuItems = ({itemsDropdown}) => {
 
   const items = context.pokemon.held_items;
 
-  const togglingArrows = () => {
+  const togglingArrows = () => { //wyrzucic funcje do pliku utils *
     if (arrow === arrowDown) {
       setArrow(arrowUp);
-    } else {
+    } else { // oddzielny komponent, który przyjmuje okreslone propsy 
       setArrow(arrowDown);
     }
   };

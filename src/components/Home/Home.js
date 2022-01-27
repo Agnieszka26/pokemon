@@ -56,6 +56,7 @@ const Home = () => {
       context.setLoading(false);
     }
   };
+  //ZABEZPIECZYĆ PRZED EFEKTREM COFANIA I PODWÓJNYM RENDEROWANIEM 
 
   return (
     <>

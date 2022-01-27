@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, { useContext} from "react";
 import Modal from "./Modal";
 import {Item} from "./ListItem.styles";
 import {ContextList} from "../../Context/ContextProvider";

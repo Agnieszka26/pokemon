@@ -37,6 +37,7 @@ const MoveCard = ({move}) => {
               );
             }
           })}
+          {/*      // niekoniecznie ul */}
       </MovesTileContainer>
     </>
   );
