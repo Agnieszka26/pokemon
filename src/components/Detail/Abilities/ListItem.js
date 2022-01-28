@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, {useContext} from "react";
 import Modal from "./Modal";
 import {Item} from "./ListItem.styles";
 import {ContextList} from "../../Context/ContextProvider";
@@ -12,7 +12,7 @@ export default function ListItem({item}) {
 
   const getAbilites = async () => {
     try {
-      const response = await fetch(item[1]);
+      const response = await fetch(item.url);
       const data = await response.json();
       context.setAbilityGer(data);
     } catch (error) {
@@ -20,11 +20,14 @@ export default function ListItem({item}) {
     }
   };
 
+
   return (
     <>
-      <Item onClick={handleModalClick}>
-        {item[0]}
-        {context.isModalVisible && <Modal />}
+      <Item
+      // onClick={handleModalClick}
+      >
+        {item.name}
+        {/* {context.isModalVisible && <Modal description={context.abilityGer} />} */}
       </Item>
     </>
   );

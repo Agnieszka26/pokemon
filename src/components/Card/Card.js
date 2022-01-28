@@ -20,7 +20,7 @@ const Card = ({pokemon}) => {
     navigate(`/Pokemonlist/Detail/${pokemon.id}/${pokemon.name}`);
   };
 
-  console.log(context.PokemonsData);
+  //console.log(context.PokemonsData);
 
   const {sprites, name, types} = pokemon;
   return (

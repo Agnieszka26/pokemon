@@ -10,7 +10,7 @@ const CardList = () => {
   const context = useContext(ContextList);
 
   useEffect(() => {
-    getingSinglePokemonData(); //nazwa "get"
+    getSinglePokemonData(); //nazwa "get"
   }, [context.pokemonsData]);
 
   useEffect(() => {
@@ -20,17 +20,22 @@ const CardList = () => {
     context.setFilteredPokemon(results);
   }, [context.searchTerm]);
 
-  const getingSinglePokemonData = () => {
-    if (context.pokemonsData) {
-      context.pokemonsData.forEach(async (pokemon) => {
-        try {
-          const res = await fetch(pokemon.url);
-          const data = await res.json();
-          context.setPokemons((objOfPokemons) => [...objOfPokemons, data]);
-        } catch (error) {
-          console.log(error);
-        }
-      });
+  const getSinglePokemonData = () => {
+    //dodanie zabezpieczenia przed renderowaniem gdy sie cofnie co strony z pokemonam
+    if (context.pokemons.length === 0) {
+      if (context.pokemonsData) {
+        context.pokemonsData.forEach(async (pokemon) => {
+          try {
+            const res = await fetch(pokemon.url);
+            const data = await res.json();
+            context.setPokemons((objOfPokemons) => [...objOfPokemons, data]);
+          } catch (error) {
+            console.log(error);
+          }
+        });
+      }
+    } else {
+      console.log(context.pokemon);
     }
   };
 
@@ -65,7 +70,7 @@ const CardList = () => {
           placeholder="Search"
         />
 
-        {!context.searching && ( //mozna inaczej ?
+        {!context.searching ? (
           <CardListBody>
             {context.pokemons
               .sort((a, b) => a.id - b.id)
@@ -73,8 +78,7 @@ const CardList = () => {
                 <Card key={detail.id} pokemon={detail} />
               ))}
           </CardListBody>
-        )}
-        {context.searching && (
+        ) : (
           <CardListBody>
             {context.filteredPokemon
               .sort((a, b) => a.id - b.id)
@@ -85,7 +89,7 @@ const CardList = () => {
         )}
       </div>
       {context.loading && <Loader />}
-    </> 
+    </>
   );
 };
 

@@ -3,42 +3,34 @@ import {Button} from "./DropDown.styles";
 import arrowDown from "../../../Assets/angle-arrow-down.png";
 import arrowUp from "../../../Assets/up-arrow-angle.png";
 import {ContextList} from "../../Context/ContextProvider";
+import DropdownMenu from "../DropDownMenu";
 
-const DropdownMenuItems = ({itemsDropdown}) => {
-  const [isActive, setIsActive] = useState(false);
-  const [arrow, setArrow] = useState(arrowDown);
+const DropdownMenuItems = () => {
+  const name = "held Items";
   const context = useContext(ContextList);
+  const items = context.pokemon.held_items.map((item) => {
+    return item;
+  });
 
-  const items = context.pokemon.held_items;
-
-  const togglingArrows = () => { //wyrzucic funcje do pliku utils *
-    if (arrow === arrowDown) {
-      setArrow(arrowUp);
-    } else { // oddzielny komponent, który przyjmuje okreslone propsy 
-      setArrow(arrowDown);
+  const getAbilites = async () => {
+    try {
+      const response = await fetch(items.url);
+      const data = await response.json();
+      context.setAbilityGer(data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const clickHandler = () => {
-    setIsActive(!isActive);
-    togglingArrows();
-  };
+  console.log(items);
 
   return (
-    <>
-      <Button onClick={clickHandler}>
-        <span style={{margin: "0.1rem"}}>Held Items</span>
-        <img src={arrow} width="8" height="8" alt="" />
-      </Button>
-      {isActive &&
-        (items.length ? (
-          items.map((item, index) => {
-            return <p key={index}>{item.item.name}</p>;
-          })
-        ) : (
-          <p>No held Items</p>
-        ))}
-    </>
+    <DropdownMenu
+      accessToAbbility={getAbilites}
+      name={name}
+      items={items.name}
+      
+    />
   );
 };
 
