@@ -4,8 +4,8 @@ const Tile = styledComponents.div`
 display:flex;
 padding:.52rem;
 margin:5px;
-width:50px;
-height:50px;
+width:40px;
+height:40px;
 justify-content:center;
 justify-items:center;
 text-align:center;
@@ -55,16 +55,29 @@ const MovesTileContainer = styledComponents.div`
 display:flex;
 flex-wrap: wrap;
 justify-content:center;
+padding: 1rem;
 `;
-const ListItemMoves = styledComponents.li`
+const ListItemMoves = styledComponents.p`
 display:flex;
   color: #f947e891;
   text-align: center;
-  padding:0 1.17rem;
+  padding: .1rem 2rem;
+  margin: .2rem;
 `;
 
+const ButonChangeTileToList = styledComponents.div`
+margin: 1rem 45% -0.5rem 45%;
+// margin:.3rem ;
+padding: .2rem;
+display:flex;
+&:hover{
+  background-color:grey;
+}
+
+`;
 
 export {
+  ButonChangeTileToList,
   ListItemMoves,
   Tile,
   CardMovesContainer,

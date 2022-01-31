@@ -27,12 +27,13 @@ const DropdownMenuAbility = () => {
   //   togglingArrows();
 
   // };
-  const name = "Ability"
+  const name = "Ability";
   const items = context.pokemon.abilities.map((item) => {
     return item.ability;
   });
 
-  return <DropdownMenu name = {name} items={items} />;
+ // console.log(items);
+  return <DropdownMenu name={name} ability={items} />;
   // return (
   //   <Container>
   //     <Button onClick={clickHandlerArrows}>

@@ -1,15 +1,32 @@
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {BackgroundModal, ModalContainer, ModalText} from "./Modals.styles";
 import {ContextList} from "../../Context/ContextProvider";
 
-const Modal = () => {
+const Modal = ({description}) => {
   const context = useContext(ContextList);
+  const [abilityGer, setAbilityGer] = useState([]);
 
+  useEffect(() => {
+    getAbilites();
+  }, []);
+
+  const getAbilites = async () => {
+    try {
+      const response = await fetch(description.url);
+      const data = await response.json();
+      setAbilityGer(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  if (abilityGer.effect_entries) {
+    console.log(abilityGer.effect_entries[0]);
+  }
   return (
     <BackgroundModal>
       <ModalContainer>
-        {context.abilityGer.effect_entries && (
-          <ModalText>{context.abilityGer.effect_entries[0].effect}</ModalText>
+        {abilityGer.effect_entries && (
+          <ModalText>{abilityGer.effect_entries[0].effect}</ModalText>
         )}
       </ModalContainer>
     </BackgroundModal>

@@ -10,7 +10,7 @@ const CardList = () => {
   const context = useContext(ContextList);
 
   useEffect(() => {
-    getSinglePokemonData(); //nazwa "get"
+    getSinglePokemonData(); 
   }, [context.pokemonsData]);
 
   useEffect(() => {

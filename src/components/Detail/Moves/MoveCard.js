@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Tile, MovesTileContainer, ListItemMoves} from "./Moves.styles";
+import {Tile, ButonChangeTileToList, MovesTileContainer, ListItemMoves} from "./Moves.styles";
 import hamburger from "../../../Assets/line.png";
 import tile from "../../../Assets/tile.png";
 
@@ -21,9 +21,9 @@ const MoveCard = ({move}) => {
 
   return (
     <>
-      <button onClick={handleActive}>
+      <ButonChangeTileToList onClick={handleActive}>
         <img src={imageButton} width="12" height="12" alt="" />
-      </button>
+      </ButonChangeTileToList>
       <MovesTileContainer>
         {move.length &&
           move.map((item, id) => {
@@ -31,13 +31,13 @@ const MoveCard = ({move}) => {
               return <Tile key={id}>{item.move.name}</Tile>;
             } else {
               return (
-                <ul style={{display: "flex"}}>
+                <div style={{display: "flex"}}>
                   <ListItemMoves key={id}>{item.move.name}</ListItemMoves>
-                </ul>
+                </div>
               );
             }
           })}
-          {/*      // niekoniecznie ul */}
+
       </MovesTileContainer>
     </>
   );
