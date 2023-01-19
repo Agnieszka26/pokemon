@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import styledComponents from "styled-components";
 
 const CardPokemon = styled.div`
-  width: 20%;
-  padding: 1rem;
+  height: 50%;
+  padding: 1.2rem;
   background: linear-gradient(
     180.2deg,
     #5193f6 -8.53%,
@@ -12,7 +11,7 @@ const CardPokemon = styled.div`
   border: 2px solid white;
   border-radius: 20px;
   box-shadow: 4px 7px 19px rgba(168, 44, 210, 0.56);
-  margin: 0.5rem;
+  margin: 0.8rem;
   transition: scale 0.3s, transform .3s;
 
   &:hover{
@@ -30,14 +29,14 @@ const ImagePokemon = styled.div`
 `;
 
 const NameTitle = styled.h1`
-  font-size: 1.1rem;
   magrin-bottom: 0;
+  font-size: 1.1rem;
 `;
 
 const TypeTitle = styled.h3`
+  magrin-bottom: 0;
   color: hsla(0, 0%, 83%, 1);
   font-size: 0.9rem;
-  magrin-bottom: 0;
 `;
 
 const PokemonButton = styled.button`
@@ -49,9 +48,9 @@ const PokemonButton = styled.button`
 `;
 
 const Tables = styled.p`
+  margin: 0;
   color: black;
   font-size: 0.6rem;
-  margin: 0;
 `;
 
 export {TypeTitle, PokemonButton, NameTitle, ImagePokemon, CardPokemon, Tables};

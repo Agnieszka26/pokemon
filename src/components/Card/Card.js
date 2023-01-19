@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+
+import {ContextList} from "../Context/ContextProvider";
 import {
   TypeTitle,
   NameTitle,
@@ -8,23 +10,30 @@ import {
   Tables,
 } from "./Card.styles";
 
-const Card = (props) => {
-  // console.log("ile razy");
-  let navigate = useNavigate();
-  function handleClick() {
-    navigate(`Detail/${props.id}/${props.name}`);
-  }
+const Card = ({pokemon}) => {
+  const context = useContext(ContextList);
+  //const pokemon = context.pokemon;
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    context.setId(pokemon.id);
+    navigate(`/Pokemonlist/Detail/${pokemon.id}/${pokemon.name}`);
+  };
+
+  //console.log(context.PokemonsData);
+
+  const {sprites, name, types} = pokemon;
   return (
-    <CardPokemon onClick={() => handleClick()}>
+    <CardPokemon onClick={handleClick}>
       <ImagePokemon>
-        <img src={props.image} alt="img" />
+        <img src={sprites.front_default} alt="img" />
       </ImagePokemon>
-      <NameTitle>{props.name}</NameTitle>
+      <NameTitle>{name}</NameTitle>
       <Tables>name</Tables>
-      <TypeTitle> {props.baseType} </TypeTitle>
+      <TypeTitle> {types[0].type.name} </TypeTitle>
       <Tables>type</Tables>
     </CardPokemon>
   );
 };
 
-export default Card;
+export {Card};
