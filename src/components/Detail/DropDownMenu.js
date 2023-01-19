@@ -62,25 +62,3 @@ const DropdownMenu = ({ name, ability, held_items }) => {
 };
 
 export default DropdownMenu;
-
-{
-  /* <div>
-{(isActive &&
-  ({name} === "Held Items") ?
-    (<ListItem item={held_items} />)
-    :(abilities &&
-        abilities.map((item) => {
-        return <ListItem key={item.url} item={item.name} abilities={abilities} />
-        }
-        )
-    )
-)}
-</div> */
-  {
-    /* <ListItem
-key={item.url}
-item={item.name}
-abilities={abilities}
-/> */
-  }
-}
