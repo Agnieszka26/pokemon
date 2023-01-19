@@ -29,12 +29,12 @@ const ImagePokemon = styled.div`
 `;
 
 const NameTitle = styled.h1`
-  magrin-bottom: 0;
+  margin-bottom: 0;
   font-size: 1.1rem;
 `;
 
 const TypeTitle = styled.h3`
-  magrin-bottom: 0;
+  margin-bottom: 0;
   color: hsla(0, 0%, 83%, 1);
   font-size: 0.9rem;
 `;
@@ -53,4 +53,11 @@ const Tables = styled.p`
   font-size: 0.6rem;
 `;
 
-export {TypeTitle, PokemonButton, NameTitle, ImagePokemon, CardPokemon, Tables};
+export {
+  TypeTitle,
+  PokemonButton,
+  NameTitle,
+  ImagePokemon,
+  CardPokemon,
+  Tables,
+};

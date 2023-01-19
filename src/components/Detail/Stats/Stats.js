@@ -1,7 +1,7 @@
-import {SmallText, Bigtext} from "../Detail.style";
-import {CardStats, StatsTile} from "./Stats.styles";
-import {ContextList} from "../../Context/ContextProvider";
-import {useContext} from "react";
+import { useContext } from "react";
+import { ContextList } from "../../Context/ContextProvider";
+import { Bigtext, SmallText } from "../Detail.style";
+import { CardStats, StatsTile } from "./Stats.styles";
 
 const Stats = () => {
   const context = useContext(ContextList);

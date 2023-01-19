@@ -1,9 +1,7 @@
-import {useContext, useEffect, useState} from "react";
-import {BackgroundModal, ModalContainer, ModalText} from "./Modals.styles";
-import {ContextList} from "../../Context/ContextProvider";
+import { useEffect, useState } from "react";
+import { BackgroundModal, ModalContainer, ModalText } from "./Modals.styles";
 
-const Modal = ({description}) => {
-  const context = useContext(ContextList);
+const Modal = ({ description }) => {
   const [abilityGer, setAbilityGer] = useState([]);
 
   useEffect(() => {

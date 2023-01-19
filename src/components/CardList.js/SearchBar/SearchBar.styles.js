@@ -24,4 +24,4 @@ const SearchBox = styled.input`
   }
 `;
 
-export {SearchBox};
+export { SearchBox };

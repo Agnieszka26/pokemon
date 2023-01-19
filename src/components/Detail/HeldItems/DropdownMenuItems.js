@@ -1,5 +1,5 @@
-import { useContext} from "react";
-import {ContextList} from "../../Context/ContextProvider";
+import { useContext } from "react";
+import { ContextList } from "../../Context/ContextProvider";
 import DropdownMenu from "../DropDownMenu";
 
 const DropdownMenuItems = () => {
@@ -9,15 +9,11 @@ const DropdownMenuItems = () => {
     return item;
   });
 
-  
-
-
-  return(
-   (items[0]) ? (
+  return items[0] ? (
     <DropdownMenu name={name} held_items={items[0].item.name} />
-   ):(<div>No Held Items</div>)
-   );
-
+  ) : (
+    <div>No Held Items</div>
+  );
 };
 
 export default DropdownMenuItems;

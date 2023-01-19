@@ -1,18 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
-import { HomeStyle, Input, InputNumber, FormContainer } from "./Home.style";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContextList } from "../Context/ContextProvider";
 import { maxNuberOfPokemonsToFetch } from "../../Assets/constants";
+import { ContextList } from "../Context/ContextProvider";
+import { FormContainer, HomeStyle, Input, InputNumber } from "./Home.style";
 
 const Home = () => {
   const context = useContext(ContextList);
   context.setPokemonsData(null);
   context.setIsHigherNumber(0);
-  // useEffect(() => {
-  //   context.setNumberOfPokemonsToFetch(null);
-  // }, [context.numberOfPokemonsToFetch]);
-
-  console.log(context.pokemonsData);
   const [validationFailed, setValidationFailed] = useState("");
 
   const validationStyles = {
@@ -49,7 +44,7 @@ const Home = () => {
   const getAllPokemons = async () => {
     const url = `https://pokeapi.co/api/v2/pokemon?limit=${context.numberOfPokemonsToFetch}`;
     context.setLoading(true);
-    // context.setPokemons(null);
+
     try {
       const response = await fetch(url);
       const data = await response.json();

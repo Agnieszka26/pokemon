@@ -1,19 +1,17 @@
-import React, { useEffect, useContext } from "react";
-import { Card } from "../Card/Card";
-import { CardListBody } from "./CardList.styles";
-import { Loader } from "../Loader/Loader";
-import { SearchBar } from "./SearchBar/SearchBar";
-import { ContextList } from "../Context/ContextProvider";
-import { maxNuberOfPokemonsToFetch } from "../../Assets/constants";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { maxNuberOfPokemonsToFetch } from "../../Assets/constants";
 import home from "../../Assets/home.png";
+import { Card } from "../Card/Card";
+import { ContextList } from "../Context/ContextProvider";
 import { MovesButton } from "../Detail/Moves/Moves.styles";
-// import { HomeButton } from "../HomeButton/HomeButton.js";
+import { Loader } from "../Loader/Loader";
+import { CardListBody } from "./CardList.styles";
+import { SearchBar } from "./SearchBar/SearchBar";
 
 const CardList = () => {
   const context = useContext(ContextList);
   const navigate = useNavigate();
-  console.log(context.numberOfPokemonsToFetch);
   context.setNumberOfPokemonsToFetch(null);
   useEffect(() => {
     context.setNumberOfPokemonsToFetch(null);
@@ -28,7 +26,6 @@ const CardList = () => {
   }, [context.searchTerm]);
 
   const getSinglePokemonData = () => {
-    //dodanie zabezpieczenia przed renderowaniem gdy sie cofnie co strony z pokemonam
     if (context.pokemons.length === 0) {
       if (context.pokemonsData) {
         context.pokemonsData.forEach(async (pokemon) => {
@@ -42,7 +39,6 @@ const CardList = () => {
         });
       }
     } else {
-      console.log(context.pokemon);
     }
   };
 

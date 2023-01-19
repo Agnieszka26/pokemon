@@ -1,8 +1,8 @@
-import {useState, useContext} from "react";
+import { useContext, useState } from "react";
 import MoveCard from "./MoveCard";
-import {MovesButton, CardMovesContainer} from "./Moves.styles";
+import { CardMovesContainer, MovesButton } from "./Moves.styles";
 
-import {ContextList} from "../../Context/ContextProvider";
+import { ContextList } from "../../Context/ContextProvider";
 
 const Moves = () => {
   const [isActive, setIsActive] = useState(false);

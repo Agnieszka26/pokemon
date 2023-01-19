@@ -1,15 +1,14 @@
-import Home from "../components/Home/Home";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CardList } from "../components/CardList.js/CardList";
+import { ContextProvider } from "../components/Context/ContextProvider";
 import Detail from "../components/Detail/Detail";
-import {GlobalStyle} from "./globalStyles";
 import Gallery from "../components/Detail/Gallery/Gallery";
-import {CardList} from "../components/CardList.js/CardList";
-import {ContextProvider} from "../components/Context/ContextProvider";
+import Home from "../components/Home/Home";
+import { GlobalStyle } from "./globalStyles";
 
 function App() {
   return (
     <>
-      {" "}
       <ContextProvider>
         <GlobalStyle />
         <BrowserRouter>

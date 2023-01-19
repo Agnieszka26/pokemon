@@ -1,9 +1,14 @@
-import React, {useState} from "react";
-import {Tile, ButonChangeTileToList, MovesTileContainer, ListItemMoves} from "./Moves.styles";
+import React, { useState } from "react";
 import hamburger from "../../../Assets/line.png";
 import tile from "../../../Assets/tile.png";
+import {
+  ButonChangeTileToList,
+  ListItemMoves,
+  MovesTileContainer,
+  Tile,
+} from "./Moves.styles";
 
-const MoveCard = ({move}) => {
+const MoveCard = ({ move }) => {
   const [isActive, setIsActive] = useState(false);
   const [imageButton, setImageButton] = useState(hamburger);
   const handleActive = () => {
@@ -31,13 +36,12 @@ const MoveCard = ({move}) => {
               return <Tile key={id}>{item.move.name}</Tile>;
             } else {
               return (
-                <div style={{display: "flex"}}>
+                <div style={{ display: "flex" }}>
                   <ListItemMoves key={id}>{item.move.name}</ListItemMoves>
                 </div>
               );
             }
           })}
-
       </MovesTileContainer>
     </>
   );

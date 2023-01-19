@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext } from "react";
 
-import {CardGallery, List, Title, ContainerGallery} from "./Gallery.styles";
-import {ContextList} from "../../Context/ContextProvider";
+import { ContextList } from "../../Context/ContextProvider";
+import { CardGallery, ContainerGallery, List, Title } from "./Gallery.styles";
 
 const Gallery = () => {
   const context = useContext(ContextList);
@@ -19,7 +19,7 @@ const Gallery = () => {
                   <CardGallery key={value}>
                     <img
                       height="150"
-                      style={{margin: "0 3rem"}}
+                      style={{ margin: "0 3rem" }}
                       src={value}
                       alt="pokemon"
                     />
@@ -27,6 +27,7 @@ const Gallery = () => {
                   </CardGallery>
                 );
               }
+              return null;
             })}
       </ContainerGallery>
     </>

@@ -1,18 +1,17 @@
-import React, {useContext, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import {ContextList} from "../Context/ContextProvider";
+import { ContextList } from "../Context/ContextProvider";
 import {
-  TypeTitle,
-  NameTitle,
-  ImagePokemon,
   CardPokemon,
+  ImagePokemon,
+  NameTitle,
   Tables,
+  TypeTitle,
 } from "./Card.styles";
 
-const Card = ({pokemon}) => {
+const Card = ({ pokemon }) => {
   const context = useContext(ContextList);
-  //const pokemon = context.pokemon;
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -20,9 +19,7 @@ const Card = ({pokemon}) => {
     navigate(`/Pokemonlist/Detail/${pokemon.id}/${pokemon.name}`);
   };
 
-  //console.log(context.PokemonsData);
-
-  const {sprites, name, types} = pokemon;
+  const { sprites, name, types } = pokemon;
   return (
     <CardPokemon onClick={handleClick}>
       <ImagePokemon>
@@ -36,4 +33,4 @@ const Card = ({pokemon}) => {
   );
 };
 
-export {Card};
+export { Card };

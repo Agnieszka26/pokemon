@@ -1,26 +1,25 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ContextList } from "../Context/ContextProvider";
 
 import home from "../../../src/Assets/home.png";
 
 import {
+  Bigtext,
+  ButtonTooltip,
   CardDetail,
   CardSmall,
-  SmallText,
-  Bigtext,
-  ImageContainer,
   Flex,
-  ButtonTooltip,
+  ImageContainer,
+  SmallText,
 } from "./Detail.style";
 
-import DropdownMenuItems from "./HeldItems/DropdownMenuItems";
-import DropdownMenuAbility from "../Detail/Abilities/DropdownMenuAbility";
-import Moves from "./Moves/Moves";
-import Stats from "./Stats/Stats";
 import { useNavigate } from "react-router-dom";
 import Tooltip from "react-simple-tooltip";
+import DropdownMenuAbility from "../Detail/Abilities/DropdownMenuAbility";
 import { MovesButton } from "../Detail/Moves/Moves.styles";
+import DropdownMenuItems from "./HeldItems/DropdownMenuItems";
+import Moves from "./Moves/Moves";
+import Stats from "./Stats/Stats";
 
 const Detail = () => {
   const context = useContext(ContextList);
