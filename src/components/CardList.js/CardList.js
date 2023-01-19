@@ -16,6 +16,7 @@ const CardList = () => {
   useEffect(() => {
     context.setNumberOfPokemonsToFetch(null);
     getSinglePokemonData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context.pokemonsData]);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const CardList = () => {
       pokemon.name.toLowerCase().includes(context.searchTerm.toLowerCase())
     );
     context.setFilteredPokemon(results);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context.searchTerm]);
 
   const getSinglePokemonData = () => {
